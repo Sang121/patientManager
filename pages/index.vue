@@ -315,10 +315,10 @@ import axios from "axios";
 const bare_URL = "http://192.168.1.53:9098"
 const access_token=localStorage.getItem('key'); //get bearer token
 const isLoggined = localStorage.getItem('isLoggined');
-// if (!isLoggined){
-//   alert("Bạn chưa đăng nhập");
-//   window.location.href = '/login'
-// }
+if (!isLoggined){
+  alert("Bạn chưa đăng nhập");
+  window.location.href = '/login'
+}
 export default {
 data(){
     return{
@@ -423,9 +423,6 @@ methods:{
           ]
 
                 }
-   
-
-
     try{  
       axios.post(`${bare_URL}/Patient`,
       patient,
@@ -443,7 +440,6 @@ methods:{
           }, 300);
           console.log(patient);
         
-        
       })
 
     }
@@ -457,15 +453,15 @@ methods:{
             modal.classList.add('hide');
     },
     addBtn(){
-    // if(isLoggined) {
+    if(isLoggined) {
         const modal = document.getElementById('addPatient');
-  modal.classList.remove('hide'); },
-  // else { 
-  //   alert("Bạn phải đăng nhập để sử dụng chức năng này")
-  //   window.location.href='/login'
-  // }
+  modal.classList.remove('hide'); }
+  else { 
+    alert("Bạn phải đăng nhập để sử dụng chức năng này")
+    window.location.href='/login'
+  }
 
-  //   },
+    },
  deletePatient(id){
         try {
         axios.delete(`${bare_URL}/Patient`,
