@@ -1,0 +1,103 @@
+{
+  "data": {
+    "actor": null,
+    "audiences": [],
+    "claims": [
+      {
+        "issuer": "LOCAL AUTHORITY",
+        "originalIssuer": "LOCAL AUTHORITY",
+        "properties": {},
+        "subject": null,
+        "type": "name",
+        "value": "sa",
+        "valueType": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      {
+        "issuer": "LOCAL AUTHORITY",
+        "originalIssuer": "LOCAL AUTHORITY",
+        "properties": {},
+        "subject": null,
+        "type": "nameid",
+        "value": "b2be6bb9-f015-4d4d-9ddd-1e76361b5c47",
+        "valueType": "http://www.w3.org/2001/XMLSchema#string"
+      },
+      {
+        "issuer": "LOCAL AUTHORITY",
+        "originalIssuer": "LOCAL AUTHORITY",
+        "properties": {},
+        "subject": null,
+        "type": "nbf",
+        "value": "1701742887",
+        "valueType": "http://www.w3.org/2001/XMLSchema#integer"
+      },
+      {
+        "issuer": "LOCAL AUTHORITY",
+        "originalIssuer": "LOCAL AUTHORITY",
+        "properties": {},
+        "subject": null,
+        "type": "exp",
+        "value": "1702347687",
+        "valueType": "http://www.w3.org/2001/XMLSchema#integer"
+      },
+      {
+        "issuer": "LOCAL AUTHORITY",
+        "originalIssuer": "LOCAL AUTHORITY",
+        "properties": {},
+        "subject": null,
+        "type": "iat",
+        "value": "1701742887",
+        "valueType": "http://www.w3.org/2001/XMLSchema#integer"
+      }
+    ],
+    "encodedHeader": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+    "encodedPayload": "eyJuYW1lIjoic2EiLCJuYW1laWQiOiJiMmJlNmJiOS1mMDE1LTRkNGQtOWRkZC0xZTc2MzYxYjVjNDciLCJuYmYiOjE3MDE3NDI4ODcsImV4cCI6MTcwMjM0NzY4NywiaWF0IjoxNzAxNzQyODg3fQ",
+    "header": {
+      "alg": "HS256",
+      "typ": "JWT"
+    },
+    "id": null,
+    "issuer": null,
+    "payload": {
+      "name": "sa",
+      "nameid": "b2be6bb9-f015-4d4d-9ddd-1e76361b5c47",
+      "nbf": 1701742887,
+      "exp": 1702347687,
+      "iat": 1701742887
+    },
+    "innerToken": null,
+    "rawAuthenticationTag": null,
+    "rawCiphertext": null,
+    "rawData": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic2EiLCJuYW1laWQiOiJiMmJlNmJiOS1mMDE1LTRkNGQtOWRkZC0xZTc2MzYxYjVjNDciLCJuYmYiOjE3MDE3NDI4ODcsImV4cCI6MTcwMjM0NzY4NywiaWF0IjoxNzAxNzQyODg3fQ.OS6Y4HuMz6rJWFR1YATIpWm_EHg7Do1AxSWFTscYU6s",
+    "rawEncryptedKey": null,
+    "rawInitializationVector": null,
+    "rawHeader": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+    "rawPayload": "eyJuYW1lIjoic2EiLCJuYW1laWQiOiJiMmJlNmJiOS1mMDE1LTRkNGQtOWRkZC0xZTc2MzYxYjVjNDciLCJuYmYiOjE3MDE3NDI4ODcsImV4cCI6MTcwMjM0NzY4NywiaWF0IjoxNzAxNzQyODg3fQ",
+    "rawSignature": "OS6Y4HuMz6rJWFR1YATIpWm_EHg7Do1AxSWFTscYU6s",
+    "securityKey": null,
+    "signatureAlgorithm": "HS256",
+    "signingCredentials": {
+      "algorithm": "http://www.w3.org/2001/04/xmldsig-more#hmac-sha256",
+      "digest": null,
+      "cryptoProviderFactory": null,
+      "key": {
+        "keySize": 256,
+        "key": "eDgxeHZvNnU2dzg2MnljdmQydHQxcWUxZnI2MnV2c2Q=",
+        "keyId": null,
+        "cryptoProviderFactory": {
+          "cryptoProviderCache": {},
+          "customCryptoProvider": null,
+          "cacheSignatureProviders": true,
+          "signatureProviderObjectPoolCacheSize": 16
+        }
+      },
+      "kid": null
+    },
+    "encryptingCredentials": null,
+    "signingKey": null,
+    "subject": null,
+    "validFrom": "2023-12-05T02:21:27Z",
+    "validTo": "2023-12-12T02:21:27Z",
+    "issuedAt": "2023-12-05T02:21:27Z"
+  },
+  "status": "OK"
+}
