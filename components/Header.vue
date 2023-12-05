@@ -36,8 +36,9 @@ export default {
 
    methods: {
       logOut(){
-   localStorage.removeItem("isLogined")
-   localStorage.removeItem("userloggedin")
+         localStorage.clear();
+
+
    this.$router.push('/login');
 },
 btn(){

@@ -311,7 +311,7 @@ data(){
 methods:{
     getPatient(){
         try{
-      axios.get(`${bare_URL}/Patient'`,
+      axios.get(`${bare_URL}/Patient`,
       {headers: {
           Authorization: `Bearer ${access_token}`
         }
@@ -325,14 +325,10 @@ methods:{
     else{ 
       console.log(response.data.data)
        this.listPatient=response.data.data
-       
-       localStorage.setItem("listPatient", JSON.stringify(response.data.data))
-        }
+              }
       })}
-      
         catch (e) {
             console.log("Không thể lấy được thông tin bệnh nhân",e.message)
-        alert("Không thể lấy được thông tin bệnh nhân")
         }
     },
 
