@@ -39,8 +39,37 @@ export default {
     // Doc: https://www.primefaces.org/primevue/showcase-v2/#/setup
     'primevue/nuxt',
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
+     '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
+  // auth: {
+  //   strategies: {
+  //     local: {
+  //       endpoints: {
+  //         login: {
+  //           url: 'Auth/login',
+  //           method: 'post',
+  //           propertyName: 'access',
+  //         },
+  //         user: {
+  //           url: 'Auth/user',
+  //           method: 'get',
+  //           propertyName: 'users'
+  //         },
+  //         tokenRequired: true,
+  //         logout: false
+  //       }
+  //     },
+  //     //watchLoggedIn: true,
+  //     // redirect: {
+  //     //   login: '/login',
+  //     //   logout: '/',
+  //     //   callback: '/login',
+  //     //   home: '/'
+  //     // }
+  //   }
+  //   // Options
+  // },
   // primevue: {
   //   options: {
   //     ripple: true
@@ -53,13 +82,18 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    // baseURL: process.env.API_URL || ' http://192.168.1.53:9098/',
+    // debug: process.env.DEBUG || false,
+    // proxyHeaders: false,
+    // credentials: false,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     // https://github.com/primefaces/primevue/issues/844
     transpile: ['primevue'],
+  },
+  router: {
+   // middleware: ['auth']
   },
 }

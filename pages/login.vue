@@ -105,13 +105,10 @@ user :{
     try{
     axios.post('http://192.168.1.53:9098/Auth/login',loginUser)
         .then((response) => {
-            
           if (response.data.status === "OK") {
-            localStorage.setItem("userloggedin",JSON.stringify(loginUser));
             localStorage.setItem("isLoggined","true");
             localStorage.setItem("key",response.data.data.rawData);
-
-             this.$router.push('/');
+            window.location.href='/'
           } else {
             console.log('Lỗi');
             alert("Đăng nhập thất bại");
@@ -125,5 +122,6 @@ user :{
     
     },
 },
+ //middleware: 'auth'
 }
 </script    >

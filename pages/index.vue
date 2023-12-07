@@ -77,6 +77,34 @@
       <label for="socon">Số con</label>
       <input type="number" class="form-control" v-model="patient.soconn" required>
     </div>
+    <div class="form-group">
+      <label for="cannang">Cân nặng</label>
+      <input type="number" class="form-control" v-model="patient.cannangg" required>
+    </div>
+    <div class="form-group">
+      <label for="tiensu">Tiểu sử</label>
+      <input type="text" class="form-control" v-model="patient.tiensuu" required>
+    </div>
+    <div class="form-group">
+      <label for="lamsang">Lâm sàng </label>
+      <input type="text" class="form-control" v-model="patient.lamsangg" required>
+    </div>
+    <div class="form-group">
+      <label for="mach">Mạch</label>
+      <input type="number" class="form-control" v-model="patient.machh" required>
+    </div>
+    <div class="form-group">
+      <label for="huyetapcao">Huyết áp cap</label>
+      <input type="number" class="form-control" v-model="patient.huyetapcaoo" required>
+    </div>
+    <div class="form-group">
+      <label for="mota">Mô tả</label>
+      <input type="text" class="form-control" v-model="patient.motaa" required>
+    </div>
+    <div class="form-group">
+      <label for="chuandoan">Chẩn đoán</label>
+      <input type="text" class="form-control" v-model="patient.chuandoann" required>
+    </div>
     <button type="submit" class="btn btn-primary add" >Thêm</button>
 
 
@@ -91,6 +119,9 @@
     <div class="modal hide " tabindex="-1" role="dialog" id="seeMore">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="unSee">
+              <span aria-hidden="true">&times;</span>
+            </button> 
           <div class="modal-header">
             <form @submit.prevent="updatePatient" class=" " method="POST">
             <table id="seeMore" class="" border="1">
@@ -116,13 +147,33 @@
 
           
         </tr>
+        <!-- <tr> <th>Cân nặng</th>
+              <th>Tiểu sử</th>
+              <th>Lâm sàng</th>
+              <th>Mạch</th>
+
+              <th> Huyết áp cao</th>
+               <th>Mô tả</th>
+              <th>Chuẩn đoán</th></tr> -->
+              <!-- <tr >
+                <td><input type="text" v-model=" patient.medicalRecords[1]" name="cannang">  </td>
+
+            <td><input type="text" v-model=" patient.medicalRecords[2] " name="tieusu">  </td>
+            <td><input type="text" v-model=" patient.medicalRecords[3] " name="lamsang">  </td>
+
+            <td><input type="text" v-model=" patient.medicalRecords[4] " name="mach">  </td>
+            <td><input type="text" v-model=" patient.medicalRecords[5] " name="huyetapcao">  </td>
+            <td><input type="text" v-model=" patient.medicalRecords[6] " name="mota">  </td>
+            <td><input type="text" v-model=" patient.medicalRecords[7] " name="chuandoan">  </td>
+            
+
+          
+        </tr> -->
 
     </table>
     <button type="submit" class="btn btn-primary updateBtn" >Sửa</button>
   </form>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="unSee">
-              <span aria-hidden="true">&times;</span>
-            </button> 
+      
     
   </div>
 </div>
@@ -205,7 +256,11 @@ input {
 .modal.show {
   display: block;
 }
-
+.modal-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .modal-content {
   border-radius: 10px;
   background-color: #fefefe;
@@ -342,6 +397,7 @@ methods:{
     }
     else{ 
        this.listPatient=response.data.data
+      // localStorage.setItem("sigleP",JSON.stringify(response.data.data[14]))
               }
       })}
         catch (e) {
@@ -381,21 +437,21 @@ methods:{
   "nghenghiep": this.patient.nghenghiepp,
   "ngaytao": "2023-12-07T06:39:26.306Z",
   "ngayketthuc": "2023-12-07T06:39:26.306Z",
-  "medicalRecord": {
+  "medicalRecords": {
     "id": 0,
     "benhnhan_id": 0,
-    "cannang": "string",
-    "chieucao": "string",
-    "tiensu": "string",
-    "lamsang": "string",
-    "mach": "string",
+    "cannang": this.patient.cannangg,
+    "chieucao": "",
+    "tiensu":this.patient.tiensuu,
+    "lamsang":this.patient.lamsangg,
+    "mach": this.patient.machh,
     "nhietdo": "string",
-    "huyetapcao": "string",
+    "huyetapcao": this.patient.huyetapcaoo,
     "huyetapthap": "string",
     "tebao": "string",
     "mauchay": 0,
-    "mota": "string",
-    "chuandoan": "string",
+    "mota": this.patient.motaa,
+    "chuandoan":this.patient.chuandoan,
     "dieutri": "string",
     "hinhanh1": "string",
     "hinhanh2": "string",
@@ -433,7 +489,8 @@ methods:{
       )
       .then((response) => {
         alert("Thêm thành công")
-        
+      //  localStorage.setItem("addPt",JSON.stringify(patient))
+        console.log(response)
           setTimeout(() => {
             window.location.reload()
           }, 300);
@@ -450,6 +507,7 @@ methods:{
     unShow() {
         const modal = document.getElementById('addPatient');
             modal.classList.add('hide');
+
     },
     addBtn(){
     if(isLoggined) {
@@ -483,7 +541,7 @@ methods:{
   
       var partientUpdate=this.patient
 
-  console.log("sau khi update",partientUpdate);
+ 
   try{
       axios.post(`${bare_URL}/Patient/update`,
       partientUpdate,
@@ -513,6 +571,7 @@ methods:{
 mounted() {
       this.getPatient();
     },
+     //Middleware: 'auth'
 
 }
 
