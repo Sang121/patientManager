@@ -71,11 +71,11 @@
     </div>
     <div class="form-group">
       <label for="nghenghiep">Nghề nghiệp</label>
-      <input type="text" class="form-control" id="address" v-model="patient.nghenghiepp" required>
+      <input type="text" class="form-control"  v-model="patient.nghenghiepp" required>
     </div>
     <div class="form-group">
       <label for="socon">Số con</label>
-      <input type="text" class="form-control" id="address" v-model="patient.soconn" required>
+      <input type="number" class="form-control" v-model="patient.soconn" required>
     </div>
     <button type="submit" class="btn btn-primary add" >Thêm</button>
 
@@ -369,60 +369,59 @@ methods:{
 
 
     addPatient(){
-      var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-      var patient={
-          hovaten: this.patient.hovatenn,
-          socon: this.patient.soconn,
-          namsinh: parseInt(this.patient.namsinhh),
-          sohoso: "",
-          diachi: this.patient.diachii,
-          gioitinh: this.patient.gioitinhh,
-          nghenghiep: this.patient.nghenghiepp,
-          ngaytao: date,
-          ngayketthuc: "2023-12-05T06:09:30.647",
-          tuoi:0,
-          medicalRecord: {
-            id: 0,
-            patient_id: 0,
-            cannang: "",
-            chieucao: "",
-            tiensu: "",
-            lamsang: "",
-            mach: 0,
-            nhietdo: "",
-            huyetapcao: "",
-            huyetapthap: "",
-            tebao: "",
-            mauchay: 10,
-            mota: "",
-            chuandoan: "",
-            dieutri: "",
-            hinhanh1: "",
-            hinhanh2: "",
-            patient: {
-              id: 0,
-              hovaten: this.patient.hovatenn,
-              socon: this.patient.soconn,
-              namsinh: parseInt(this.patient.namsinhh),
-              sohoso: "",
-              diachi: this.patient.diachii,
-              gioitinh: this.patient.gioitinhh,
-              nghenghiep: this.patient.nghenghiep,
-              ngaytao: date,
-              ngayketthuc: "2023-12-05T06:09:30.647",
-              medicalRecords: [
-               
-              ]
-            },
-            hinhanh: [
-              
-            ]
-          },
-          hinhanh: [
-            
-          ]
+      //var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+      var patient=
+        {
+          "hovaten": this.patient.hovatenn,
+  "socon": this.patient.soconn,
+  "namsinh": this.patient.namsinhh,
+  "sohoso": "string",
+  "diachi": this.patient.diachii,
+  "gioitinh":this.patient.gioitinhh,
+  "nghenghiep": this.patient.nghenghiepp,
+  "ngaytao": "2023-12-07T06:39:26.306Z",
+  "ngayketthuc": "2023-12-07T06:39:26.306Z",
+  "medicalRecord": {
+    "id": 0,
+    "benhnhan_id": 0,
+    "cannang": "string",
+    "chieucao": "string",
+    "tiensu": "string",
+    "lamsang": "string",
+    "mach": "string",
+    "nhietdo": "string",
+    "huyetapcao": "string",
+    "huyetapthap": "string",
+    "tebao": "string",
+    "mauchay": 0,
+    "mota": "string",
+    "chuandoan": "string",
+    "dieutri": "string",
+    "hinhanh1": "string",
+    "hinhanh2": "string",
+    "benhNhan": {
+      "id": 0,
+      "hovaten": this.patient.hovatenn,
+      "socon": this.patient.soconn,
+      "namsinh": this.patient.namsinhh,
+      "sohoso": "string",
+      "diachi": this.patient.diachii,
+      "gioitinh": this.patient.gioitinhh,
+      "nghenghiep": this.patient.nghenghiepp,
+      "ngaytao": "2023-12-07T06:39:26.306Z",
+      "ngayketthuc": "2023-12-07T06:39:26.306Z",
+      "medicalRecords": [
+   
+      ]
+    },
+    "hinhanh": [
+ 
+    ]
+  },
+  "hinhanh": [
 
-                }
+  ]
+}
     try{  
       axios.post(`${bare_URL}/Patient`,
       patient,
