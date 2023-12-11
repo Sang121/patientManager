@@ -122,6 +122,6 @@ user :{
     
     },
 },
- //middleware: 'auth'
+ middleware: 'auth'
 }
 </script    >
