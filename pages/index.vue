@@ -103,7 +103,7 @@
     </div>
     <div class="form-group">
       <label for="chuandoan">Chẩn đoán</label>
-      <input type="text" class="form-control" v-model="patient.chuandoann" required>
+      <input type="text" class="form-control" v-model="patient.chandoann" required>
     </div>
     <button type="submit" class="btn btn-primary add" >Thêm</button>
 
@@ -428,6 +428,7 @@ methods:{
       //var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
       var patient=
         {
+          "id": 0,
           "hovaten": this.patient.hovatenn,
   "socon": this.patient.soconn,
   "namsinh": this.patient.namsinhh,
@@ -437,7 +438,7 @@ methods:{
   "nghenghiep": this.patient.nghenghiepp,
   "ngaytao": "2023-12-07T06:39:26.306Z",
   "ngayketthuc": "2023-12-07T06:39:26.306Z",
-  "medicalRecords": {
+  "medicalRecords": [{
     "id": 0,
     "benhnhan_id": 0,
     "cannang": this.patient.cannangg,
@@ -451,7 +452,7 @@ methods:{
     "tebao": "string",
     "mauchay": 0,
     "mota": this.patient.motaa,
-    "chuandoan":this.patient.chuandoan,
+    "chuandoan":this.patient.chandoann,
     "dieutri": "string",
     "hinhanh1": "string",
     "hinhanh2": "string",
@@ -473,7 +474,7 @@ methods:{
     "hinhanh": [
  
     ]
-  },
+  }],
   "hinhanh": [
 
   ]
@@ -487,7 +488,9 @@ methods:{
         },
       }
       )
+   
       .then((response) => {
+        console.log(patient)
         alert("Thêm thành công")
       //  localStorage.setItem("addPt",JSON.stringify(patient))
         console.log(response)
@@ -500,7 +503,7 @@ methods:{
 
     }
         catch (e) {
-            console.log("Thêm bệnh nhân khoogn thành công",e)
+            console.log("Thêm bệnh nhân không thành công",e)
         alert("Không thể thêm được bệnh nhân mới")
         }
     },
