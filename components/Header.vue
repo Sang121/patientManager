@@ -1,6 +1,6 @@
 <template>
    <div class="header">
-     <h2>Quản lý bệnh nhân</h2>
+     <h2><a href="/ ">Quản lý bệnh nhân</a></h2>
      <button class="logOutBtn "  id="btn" @click="logOut"> Đăng xuất</button>
    </div>
  </template>
@@ -16,6 +16,9 @@
    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
    
  }
+ a{
+  text-decoration: none;
+color: black;}
  
  .logOutBtn {
    width: 100px;

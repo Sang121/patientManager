@@ -29,6 +29,8 @@
         <tr>
           <th>Tuổi:</th>
           <td>{{ patient.tuoi }}</td>
+          <th>Số con</th>
+          <td>{{ patient.socon }}</td>
         </tr>
       
 
@@ -83,11 +85,67 @@
         </tr>
 
       </table>
-    <button type="button" class="addUser btn btn-primary" @click="edit()">  Sửa bệnh nhân</button>
-<updatePatient/>
+    <button type="button" class="addUser btn btn-primary" @click="edit()">  Sửa thông tin </button>
+<!-- <updatePatient/> -->
+<div class="update"> 
+    <div class="modal hide " tabindex="-1" role="dialog" id="seeMore">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="unSee">
+              <span aria-hidden="true">&times;</span>
+            </button> 
+          <div class="modal-header">
+            <form @submit.prevent="updatePatient" class=" " method="POST">
+            <table id="seeMore" class="" border="1">
+          <tr>
+      
+              <th>Họ và tên</th>
+              <th>Tuổi</th>
+              <th>Giới tính</th>
+            </tr>
+           
+            <tr >
+         
+            <td><input type="text" v-model=" patient.hovaten " name="hovaten">  </td>
+            <td><input type="number" v-model=" patient.tuoi " name="tuoi">  </td>
+            <td><input type="text" v-model=" patient.gioitinh " name="gioitinh">  </td>
+          </tr>
+          <tr> 
+              <th> Địa chỉ </th>
+               <th>Nghề Nghiệp</th>
+              <th>Số con</th>
+            </tr>
+            <tr> 
+            <td><input type="text" v-model=" patient.diachi " name="diachi">  </td>
+            <td><input type="text" v-model=" patient.nghenghiep " name="nghenghiep">  </td>
+            <td><input type="number" v-model=" patient.socon " name="socon">  </td>
+        </tr>
+        <!-- <tr> <th>Cân nặng</th>
+              <th>Tiểu sử</th>
+              <th>Lâm sàng</th>
+              <th>Mạch</th>
+              <th> Huyết áp cao</th>
+               <th>Mô tả</th>
+              <th>Chuẩn đoán</th></tr> 
+             <tr >
+                <td><input type="text" v-model="medicalRecord.cannang" name="cannang">  </td>
+            <td><input type="text" v-model=" medicalRecord.tieusu " name="tieusu">  </td>
+            <td><input type="text" v-model=" medicalRecord.lamsang " name="lamsang">  </td>
+            <td><input type="text" v-model="medicalRecord.mach " name="mach">  </td>
+            <td><input type="text" v-model=" medicalRecord.huyetapcao " name="huyetapcao">  </td>
+            <td><input type="text" v-model=" medicalRecord.mota " name="mota">  </td>
+            <td><input type="text" v-model=" medicalRecord.chuandoan" name="chuandoan">  </td>
+        </tr> -->
+    </table>
+    <button type="submit" class="btn btn-primary updateBtn" >Gửi</button>
+  </form>
+  </div>
 </div>
 </div>
-   
+    </div>
+     </div>
+</div>
+</div>
 </template>
 <style>
   /* Container Styles */
@@ -158,9 +216,7 @@ const base_URL = "http://192.168.1.53:9098"
 const access_token= localStorage.getItem("auth._token.local"); //get bearer token
 
 export default {
-  created() {
-console.log(this.$route.query.id)
-  },
+ 
     data(){
     return {
         patient:{},
@@ -170,7 +226,7 @@ console.log(this.$route.query.id)
 
     methods: {
       async getRecord( ) {
-const id=this.$route.query.id
+        const id=this.$route.query.id
 
                     try {
                     await axios.get(`${base_URL}/Patient/${id}/records`, { headers: {
@@ -184,8 +240,7 @@ const id=this.$route.query.id
                             }
                             else {
                                 this.medicalRecord= response.data.data[0];
-                                console.log("Lấy data thành công",response.data.data[0]);
-
+                                console.log(" data render",response.data.data[0]);
                             }
                         });
                     }
@@ -194,7 +249,7 @@ const id=this.$route.query.id
                     }
                     },
         async getSiglePatient( ) {
-const id=this.$route.query.id
+          const id=this.$route.query.id
                     try {
                     await axios.get(`${base_URL}/Patient/${id}`, { headers: {
                                 Authorization: access_token
@@ -207,6 +262,7 @@ const id=this.$route.query.id
                             }
                             else {
                                 this.patient = response.data.data;
+                                console.log("patient got",this.patient)
 
                             }
                         });
@@ -215,13 +271,43 @@ const id=this.$route.query.id
                         console.log("Không thể lấy được thông tin bệnh nhân", e.message);
                     }
                     },
+    updatePatient(){
+        this.patient.medicalRecords[0] =this.medicalRecord
+        var partientUpdate=this.patient
+        console.log("partientUpdate",partientUpdate)  
+          try{
+            axios.post(`${base_URL}/Patient/update`,
+            partientUpdate,
+            {headers: {
+                Authorization:access_token
+              }
+            }     
+            ) 
+            .then((response) => {
+      
+              alert("Update thông tin thành công")
+              console.log("res",response);
+              setTimeout(() => {
+                window.location.reload()
+                }, 300);
+            }
+            )}
+            catch (e) {
+                console.log("Không thể update",e)
+
+            }
+      },
 
 edit(){
   const modal = document.getElementById('seeMore');
                 modal.classList.remove('hide');
 
 
-}
+},
+unSee() {
+      const seeMore = document.getElementById('seeMore');
+      seeMore.classList.add('hide'); 
+    },
 
     },
 

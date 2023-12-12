@@ -5,7 +5,6 @@
     <div class="listUser"> 
         <div class="addUser">
         <button type="button" class="addUser btn btn-primary" @click="addBtn()">  Thêm bệnh nhân</button>
-        <button type="button" class="addUser btn btn-primary" @click="getPatient()">  Làm mới</button>
 
     </div>
     <!-- Danh sách bệnh nhân -->
@@ -32,7 +31,7 @@
             <td>{{ patient.diachi }}</td>
 
             <td><Button  @click="seeMore(patient.id)" class="btn btn-primary"> Xem </Button></td>
-            <td><Button @click="deletePatient(patient.id) "  class="btn btn-primary">Xóa </Button></td>
+            <td><Button  class="btn btn-primary">Xóa </Button></td>
         </tr>
        
     </table>
@@ -218,9 +217,7 @@ export default {
 
 },
         seeMore(index) {
-            //localStorage.setItem("patient", JSON.stringify(this.listPatient[index]))
-            // const seeMore = document.getElementById('seeMore');
-            // seeMore.classList.remove('hide');
+           
             this.$router.push(`/patient?id=${index}`)
         },
         addBtn() {
