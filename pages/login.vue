@@ -76,13 +76,9 @@ a {
 import { ref } from 'vue';
 import axios from 'axios';
 const isLoggined =localStorage.getItem("isLoggined")
-      if(isLoggined){
-        alert("Bạn đã đăng nhập");
-        window.location.href='/'
-      
-      }
-      else{console.log("Bạn chưa đăng nhập") }
+
 export default {
+  
  data(){
     return {
 user :{
@@ -95,33 +91,64 @@ user :{
  
    methods:{  
     
-    loginUser(){
-      const loginUser = {
-        username: this.user.username,
-        password: this.user.password,
-        rememberLogin: true
-      };
+    // loginUser(){
+    //   const loginUser = {
+    //     username: this.user.username,
+    //     password: this.user.password,
+    //     rememberLogin: true
+    //   };
       
-    try{
-    axios.post('http://192.168.1.53:9098/Auth/login',loginUser)
-        .then((response) => {
-          if (response.data.status === "OK") {
-            localStorage.setItem("isLoggined","true");
-            localStorage.setItem("key",response.data.data.rawData);
-            window.location.href='/'
-          } else {
-            console.log('Lỗi');
-            alert("Đăng nhập thất bại");
-          }
-        })}
+    // try{
+    // axios.post('http://192.168.1.53:9098/Auth/login',loginUser)
+    //     .then((response) => {
+    //       if (response.data.status === "OK") {
+    //         localStorage.setItem("isLoggined","true");
+    //         localStorage.setItem("key",response.data.data.rawData);
+    //         window.location.href='/'
+    //       } else {
+    //         console.log('Lỗi');
+    //         alert("Đăng nhập thất bại");
+    //       }
+    //     })}
 
-        catch(e) {
-          console.error('Đăng nhập thất bại:', e.response.data.message 
-        );
-        };
+    //     catch(e) {
+    //       console.error('Đăng nhập thất bại:', e.response.data.message 
+    //     );
+    //     };
     
-    },
+    // },
+    async loginUser() {
+      try {
+      const res=  await this.$auth.loginWith('local', {
+          data: this.user
+          
+        })
+        
+        if (res.data.status == "OK") {
+      // Chuyển hướng đến trang home.
+      this.$auth.setUser({
+        username:this.user.username,
+        password: this.user.password,
+      })
+     this.$auth.setUserToken(res.data.data.rawData)
+     console.log('Đăng nhập thành công');
+   localStorage.setItem('isLoggedIn', true)
+     alert("Đăng nhập thành công")
+    
+     window.location.href ="/" 
+    } else {
+      console.log('Đăng nhập thất bại');
+      alert("Đăng nhập thất bại")
+        
+
+    }
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    
 },
- middleware: 'auth'
+auth: false
+
 }
 </script    >

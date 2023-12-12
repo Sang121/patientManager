@@ -30,28 +30,28 @@
 
           
         </tr>
-        <!-- <tr> <th>Cân nặng</th>
+        <tr> <th>Cân nặng</th>
               <th>Tiểu sử</th>
               <th>Lâm sàng</th>
               <th>Mạch</th>
 
               <th> Huyết áp cao</th>
                <th>Mô tả</th>
-              <th>Chuẩn đoán</th></tr> -->
-              <!-- <tr >
-                <td><input type="text" v-model=" patient.medicalRecords[1]" name="cannang">  </td>
+              <th>Chuẩn đoán</th></tr> 
+             <tr >
+                <td><input type="text" v-model="medicalRecord.chieucao" name="cannang">  </td>
 
-            <td><input type="text" v-model=" patient.medicalRecords[2] " name="tieusu">  </td>
-            <td><input type="text" v-model=" patient.medicalRecords[3] " name="lamsang">  </td>
+            <td><input type="text" v-model=" medicalRecord.tieusu " name="tieusu">  </td>
+            <td><input type="text" v-model=" medicalRecord.lamsang " name="lamsang">  </td>
 
-            <td><input type="text" v-model=" patient.medicalRecords[4] " name="mach">  </td>
-            <td><input type="text" v-model=" patient.medicalRecords[5] " name="huyetapcao">  </td>
-            <td><input type="text" v-model=" patient.medicalRecords[6] " name="mota">  </td>
-            <td><input type="text" v-model=" patient.medicalRecords[7] " name="chuandoan">  </td>
+            <td><input type="text" v-model="medicalRecord.mach " name="mach">  </td>
+            <td><input type="text" v-model=" medicalRecord.huyetapcao " name="huyetapcao">  </td>
+            <td><input type="text" v-model=" medicalRecord.mota " name="mota">  </td>
+            <td><input type="text" v-model=" medicalRecord.chuandoan" name="chuandoan">  </td>
             
 
           
-        </tr> -->
+        </tr>
 
     </table>
     <button type="submit" class="btn btn-primary updateBtn" >Sửa</button>
@@ -91,7 +91,7 @@
   margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 50%;
+  width: 80%;
 }
 
 .modal-title {
@@ -100,7 +100,7 @@
 
 .formAddUser {
   margin-left: 20%;
-  width: 60%;
+  width: 80%;
 }
 
 .addUser {
@@ -112,12 +112,13 @@
 <script>
 import axios from "axios";
 const base_URL = "http://192.168.1.53:9098"
-const access_token=localStorage.getItem('key'); //geat bearer token
+const access_token= localStorage.getItem("auth._token.local"); //get bearer token
 export default {
     data(){
     return {
 
         patient:{},
+        medicalRecord:{},
     };
 },
     methods: {
@@ -125,12 +126,13 @@ export default {
 
         updatePatient(){
   
+  this.patient.medicalRecord = this.medicalRecord
   var partientUpdate=this.patient
 try{
   axios.post(`${base_URL}/Patient/update`,
   partientUpdate,
   {headers: {
-      Authorization: `Bearer ${access_token}`
+      Authorization:access_token
     }
   }
   ) 
@@ -154,7 +156,7 @@ unSee() {
 
     },
 
-    name: 'updatePatient',
+    name: 'UpdateForm',
     }
 
 </script>
