@@ -1,0 +1,162 @@
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phiếu khám</title>
+    <link rel="stylesheet" href="/css/simplegrid.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.4.1/paper.css" />
+    <style>
+        @page {
+            size: A5;
+        }
+
+        * {
+            font-family: 'Times New Roman' !important;
+        }
+
+        #printInner {
+            text-align: center;
+            font-size: 12pt;
+            font-family: 'Times New Roman' !important;
+        }
+
+        #printInner h1,
+        h3,
+        #printInner p {
+            margin: 0;
+        }
+
+        .mb-1 {
+            margin-bottom: 0.1in;
+        }
+
+        .title {
+            color: #215868;
+        }
+
+        img {
+            margin: auto;
+            width: 70mm;
+        }
+    </style>
+</head>
+<!-- Set "A5", "A4" or "A3" for class name -->
+<!-- Set also "landscape" if you need -->
+
+<body class="A5">
+    <!-- Each sheet element should have the class "sheet" -->
+    <!-- "padding-**mm" is optional: you can set 10, 15, 20 or 25 -->
+    <section class="sheet" style="margin-left: auto; margin-right: auto">
+        <!-- Write HTML just like a web page -->
+        <article id="printInner">
+            <h3 style="
+              margin-top: 0.1875in;
+              font-size: 15pt;
+              font-weight: 700;
+              color: red;
+            ">
+                PHÒNG KHÁM CHỮA BỆNH CHUYÊN KHOA TRĨ ĐNT
+            </h3>
+            <p style="
+              margin-top: 0.1875in;
+              font-size: 12pt;
+              font-weight: 700;
+              color: #215868;
+            ">
+                CƠ SỞ 1: SỐ 60 HÀO NAM, HÀ NỘI
+            </p>
+            <p style="
+              margin-top: 0.05in;
+              font-size: 12pt;
+              font-weight: 700;
+              color: #215868;
+            ">
+                PGS.TS.THẦY THUỐC ƯU TÚ ĐỖ NGỌC TẤN
+            </p>
+            <p style="
+              margin-top: 0.05in;
+              font-size: 12pt;
+              font-weight: 700;
+              color: #215868;
+            ">
+                Điện thoại: 024.38519614 - 0913.379699 - 0904.17.27.09
+            </p>
+            <hr width="50%" style="
+              border-style: dotted;
+              border-width: 2pt;
+              border-color: #215868;
+            " />
+            <h1 style="
+              margin-bottom: 0.2in;
+              font-size: 20pt;
+              font-weight: 700;
+              color: red;
+            ">
+                HÌNH ẢNH NỘI SOI
+            </h1>
+            <div class="row mb-1">
+                <div class="col-6">
+                    <div class="col-5 right font-heavy title">Họ và tên</div>
+                    <div class="col-7 left">Nguy&#x1EC5;n H&#x1EA3;i H&#xE0;</div>
+                </div>
+                <div class="col-6">
+                    <div class="col-5 right font-heavy title">Tuổi</div>
+                    <div class="col-7 left">30</div>
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-6">
+                    <div class="col-5 right font-heavy title">Địa chỉ</div>
+                    <div class="col-7 left">Thanh Xu&#xE2;n -H&#xE0; N&#x1ED9;i</div>
+                </div>
+                <div class="col-6">
+                    <div class="col-5 right font-heavy title">Giới tính</div>
+                    <div class="col-7 left">Nam</div>
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-6">
+                    <div class="col-5 right font-heavy title">Ngày soi</div>
+                    <div class="col-7 left">12/10/2023</div>
+                </div>
+            </div>
+            <div class="row mb-1">
+            </div>
+            <div class="row mb-1">
+                <div class="col-6 center" style="margin-bottom: 0.05in;">
+                    <div class="col-5 right font-heavy title" style="text-decoration: underline">
+                        Mô tả
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="col-2"></div>
+                    <div class="col-10 left" style="text-align: justify;"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6" style="margin-bottom: 0.05in;">
+                    <div class="col-5 right font-heavy title" style="text-decoration: underline">
+                        Chuẩn đoán
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="col-2"></div>
+                    <div class="col-10 left" style="text-align: justify;"></div>
+                </div>
+            </div>
+            <p style="
+              position:absolute;
+              bottom: 0.3in;
+              right: 0.5in;
+              font-size: 14pt;
+              font-weight: 700;
+              color: #215868;
+            ">
+                P.GS/TS. ĐỖ NGỌC TẤN
+            </p>
+        </article>
+    </section>
+</body>
+
+</html>

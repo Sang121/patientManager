@@ -2,7 +2,7 @@
   <div class="container"> 
     <Header /> <hr/>  
         <div class="main">
- 
+ <button @click="getExam()">In phiếu khám </button>
       <table>
         <tr> 
 
@@ -100,14 +100,14 @@
           <tr>
       
               <th>Họ và tên</th>
-              <th>Tuổi</th>
+              <th>Năm sinh</th>
               <th>Giới tính</th>
             </tr>
            
             <tr >
          
             <td><input type="text" v-model=" patient.hovaten " name="hovaten">  </td>
-            <td><input type="number" v-model=" patient.tuoi " name="tuoi">  </td>
+            <td><input type="number" v-model=" patient.namsinh " name="tuoi">  </td>
             <td><input type="text" v-model=" patient.gioitinh " name="gioitinh">  </td>
           </tr>
           <tr> 
@@ -298,6 +298,27 @@ export default {
             }
       },
 
+    async  getExam(){
+        const id=this.$route.query.id
+        try {
+                    await axios.get(`${base_URL}/Patient/${id}/examination`, { headers: {
+                                Authorization: access_token
+                            }
+                        })
+                            .then((response) => {
+                              console.log("patient got",response.data.data )
+                              localStorage.setItem("examination",response.data.data)
+                              window.location.href = '/exam.html'
+                                // this.patient = response.data.data;
+                                // console.log("patient got",this.patient)
+
+                           
+                        });
+                    }
+                    catch (e) {
+                        console.log("Không thể lấy được thông tin bệnh nhân", e.message);
+                    }
+                    },
 edit(){
   const modal = document.getElementById('seeMore');
                 modal.classList.remove('hide');
@@ -310,6 +331,7 @@ unSee() {
     },
 
     },
+
 
     mounted(){
         this.getSiglePatient(),
