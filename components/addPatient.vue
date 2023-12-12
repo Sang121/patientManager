@@ -17,58 +17,67 @@
     <form @submit.prevent="addPatient" class="formAddUser " method="POST">
     <div class="form-group">
       <label for="fullName">Họ và tên</label>
-      <input type="text" class="form-control" id="fullName" v-model="patient.hovatenn"  required>
+
+      <input type="text" class="form-control" id="fullName" v-model="patient.hovaten"  required>
+
+    
+
     </div>
 
     <div class="form-group">
       <label for="namsinh">Năm sinh</label>
-      <input type="number" class="form-control" id="namsinh"  v-model="patient.namsinhh" required> 
+
+      <input type="number" class="form-control" id="namsinh"  v-model="patient.namsinh" required> 
     </div>
 
     <div class="form-group">
       <label for="gender">Giới tính</label>
-      <input type="text" class="form-control" id="gender" v-model="patient.gioitinhh" required>
+
+      <input type="text" class="form-control" id="gender" v-model="patient.gioitinh" required>
+
     </div>
 
     <div class="form-group">
       <label for="address">Địa chỉ</label>
-      <input type="text" class="form-control" id="address" v-model="patient.diachii" required>
+
+      <input type="text" class="form-control" id="address" v-model="patient.diachi" required>
     </div>
     <div class="form-group">
       <label for="nghenghiep">Nghề nghiệp</label>
-      <input type="text" class="form-control"  v-model="patient.nghenghiepp" required>
+      <input type="text" class="form-control"  v-model="patient.nghenghiep" required>
     </div>
     <div class="form-group">
       <label for="socon">Số con</label>
-      <input type="number" class="form-control" v-model="patient.soconn" required>
+      <input type="number" class="form-control" v-model="patient.socon" required>
     </div>
     <div class="form-group">
       <label for="cannang">Cân nặng</label>
-      <input type="number" class="form-control" v-model="patient.cannangg" required>
+      <input type="number" class="form-control" v-model="patient.cannang" required>
     </div>
     <div class="form-group">
       <label for="tiensu">Tiểu sử</label>
-      <input type="text" class="form-control" v-model="patient.tiensuu" required>
+      <input type="text" class="form-control" v-model="patient.tiensu" required>
     </div>
     <div class="form-group">
       <label for="lamsang">Lâm sàng </label>
-      <input type="text" class="form-control" v-model="patient.lamsangg" required>
+      <input type="text" class="form-control" v-model="patient.lamsang" required>
     </div>
     <div class="form-group">
       <label for="mach">Mạch</label>
-      <input type="number" class="form-control" v-model="patient.machh" required>
+      <input type="number" class="form-control" v-model="patient.mach" required>
     </div>
     <div class="form-group">
-      <label for="huyetapcao">Huyết áp cap</label>
-      <input type="number" class="form-control" v-model="patient.huyetapcaoo" required>
+      <label for="huyetapcao">Nhiệt độ</label>
+      <input type="number" class="form-control" v-model="patient.nhietdo" required>
     </div>
     <div class="form-group">
       <label for="mota">Mô tả</label>
-      <input type="text" class="form-control" v-model="patient.motaa" required>
+      <input type="text" class="form-control" v-model="patient.mota" required>
     </div>
     <div class="form-group">
       <label for="chuandoan">Chẩn đoán</label>
-      <input type="text" class="form-control" v-model="patient.chuandoann" required>
+      <input type="text" class="form-control" v-model="patient.chandoan" required>
+
     </div>
     <button type="submit" class="btn btn-primary add" >Thêm</button>
 
@@ -193,7 +202,10 @@ input {
 <script>
 import axios from "axios";
 const base_URL = "http://192.168.1.53:9098"
-const access_token=localStorage.getItem('key'); //geat bearer token
+
+const access_token= localStorage.getItem("auth._token.local"); //get bearer token
+
+
 export default {
 data(){
     return {
@@ -206,52 +218,55 @@ methods:{
       //var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
       var patient=
         {
-            "id": 0,
-          "hovaten": this.patient.hovatenn,
-  "socon": this.patient.soconn,
-  
-  "namsinh": this.patient.namsinhh,
+
+          
+  "hovaten": this.patient.hovaten,
+  "socon": this.patient.socon,
+  "namsinh": this.patient.namsinh,
   "sohoso": "string",
-  "diachi": this.patient.diachii,
-  "gioitinh":this.patient.gioitinhh,
-  "nghenghiep": this.patient.nghenghiepp,
-  "ngaytao": "2023-12-07T06:39:26.306Z",
-  "ngayketthuc": "2023-12-07T06:39:26.306Z",
-  "medicalRecords": {
+  "diachi": this.patient.diachi,
+  "gioitinh": this.patient.gioitinh,
+  "nghenghiep": this.patient.nghenghiep,
+  "ngaytao": "2023-12-12T03:24:48.462Z",
+  "ngayketthuc": "2023-12-12T03:24:48.462Z",
+  "medicalRecord": {
     "id": 0,
     "benhnhan_id": 0,
-    "cannang": this.patient.cannangg,
-    "chieucao": "",
-    "tiensu":this.patient.tiensuu,
-    "lamsang":this.patient.lamsangg,
-    "mach": this.patient.machh,
-    "nhietdo": "string",
-    "huyetapcao": this.patient.huyetapcaoo,
+    "cannang": "string",
+    "chieucao": "string",
+    "tiensu": this.patient.tiensu,
+    "lamsang": "string",
+    "mach": this.patient.mach,
+    "nhietdo":this.patient.nhietdo,
+    "huyetapcao": "string",
     "huyetapthap": "string",
     "tebao": "string",
     "mauchay": 0,
-    "mota": this.patient.motaa,
-    "chuandoan":this.patient.chuandoan,
+    "mota": this.patient.mota,
+    "chuandoan": this.patient.chandoan,
+
     "dieutri": "string",
     "hinhanh1": "string",
     "hinhanh2": "string",
     "benhNhan": {
       "id": 0,
-      "hovaten": this.patient.hovatenn,
-      "socon": this.patient.soconn,
-      "namsinh": this.patient.namsinhh,
+
+      "hovaten":this.patient.hovaten,
+      "socon": this.patient.socon,
+      "namsinh": this.patient.namsinh,
       "sohoso": "string",
-      "diachi": this.patient.diachii,
-      "gioitinh": this.patient.gioitinhh,
-      "nghenghiep": this.patient.nghenghiepp,
-      "ngaytao": "2023-12-07T06:39:26.306Z",
-      "ngayketthuc": "2023-12-07T06:39:26.306Z",
+      "diachi": this.patient.diachi,
+      "gioitinh": this.patient.gioitinh,
+      "nghenghiep":this.patient.nghenghiep,
+      "ngaytao": "2023-12-12T03:24:48.462Z",
+      "ngayketthuc": "2023-12-12T03:24:48.462Z",
       "medicalRecords": [
-   
+
       ]
     },
     "hinhanh": [
- 
+
+
     ]
   },
   "hinhanh": [
@@ -262,7 +277,9 @@ methods:{
       axios.post(`${base_URL}/Patient`,
       patient,
       {headers: {
-          Authorization: `Bearer ${access_token}`,
+
+          Authorization: access_token,
+
           "Content-type": "application/json; charset=UTF-8"
         },
       }
@@ -272,7 +289,9 @@ methods:{
       //  localStorage.setItem("addPt",JSON.stringify(patient))
         console.log(response)
               setTimeout(() => {
-                window.location.reload()
+
+               window.location.reload()
+
               }, 300);
           console.log(patient);
         

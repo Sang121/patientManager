@@ -5,6 +5,8 @@
     <div class="listUser"> 
         <div class="addUser">
         <button type="button" class="addUser btn btn-primary" @click="addBtn()">  Thêm bệnh nhân</button>
+        <button type="button" class="addUser btn btn-primary" @click="getPatient()">  Làm mới</button>
+
     </div>
     <!-- Danh sách bệnh nhân -->
     <table border="1">
@@ -29,7 +31,7 @@
             <td>{{ patient.gioitinh }}</td>
             <td>{{ patient.diachi }}</td>
 
-            <td><Button  @click="seeMore(index)" class="btn btn-primary"> Xem </Button></td>
+            <td><Button  @click="seeMore(patient.id)" class="btn btn-primary"> Xem </Button></td>
             <td><Button @click="deletePatient(patient.id) "  class="btn btn-primary">Xóa </Button></td>
         </tr>
        
@@ -40,8 +42,7 @@
 <!-- Form add patient -->
     <addPatient/>
 
-<!-- form update -->
-    <updatePatient/>
+
 
 </div>
 </template>
@@ -173,79 +174,87 @@ input {
 <script>
 import axios from "axios";
 const base_URL = "http://192.168.1.53:9098"
-const access_token=localStorage.getItem('key'); //geat bearer token
-const isLoggined = localStorage.getItem('isLoggined');
-if (!isLoggined){
-  alert("Bạn chưa đăng nhập");
-  window.location.href = '/login'
-}
+
+const access_token= localStorage.getItem("auth._token.local"); //get bearer token
 
 export default {
+
+
     data() {
         return {
             listPatient: [],
             patient: {},
         };
     },
+
+   
+  
     methods: {
-        getPatient() {
+      async getPatient( ) {
+
             try {
-                axios.get(`${base_URL}/Patient`, { headers: {
-                        Authorization: `Bearer ${access_token}`
+               await axios.get(`${base_URL}/Patient`, { headers: {
+                        Authorization: access_token
                     }
                 })
                     .then((response) => {
-                      console.log("res:",response)
+
                     if (response.data.total_count == 0) {
                         console.log("Không có data");
                         document.getElementById("list").innerHTML = "Không có bản ghi nào!";
                     }
                     else {
                         this.listPatient = response.data.data;
-                        console.log("Lấy data thành công");
+
+                        console.log("Lấy data thành công",response.data);
+
+
                     }
                 });
             }
             catch (e) {
                 console.log("Không thể lấy được thông tin bệnh nhân", e.message);
             }
-        },
-        seeMore(id) {
-            this.patient = this.listPatient[id];
-            // localStorage.removeItem("Patient")
-            // localStorage.setItem("Patient",patient)
-            const seeMore = document.getElementById('seeMore');
-            seeMore.classList.remove('hide');
+
+},
+        seeMore(index) {
+            //localStorage.setItem("patient", JSON.stringify(this.listPatient[index]))
+            // const seeMore = document.getElementById('seeMore');
+            // seeMore.classList.remove('hide');
+            this.$router.push(`/patient?id=${index}`)
         },
         addBtn() {
-            if (isLoggined) {
+          
                 const modal = document.getElementById('addPatient');
                 modal.classList.remove('hide');
-            }
-            else {
-                alert("Bạn phải đăng nhập để sử dụng chức năng này");
-                window.location.href = '/login';
-            }
-        },
-        deletePatient(id) {
-            try {
-                axios.delete(`${base_URL}/Patient`, { id }, { headers: {
-                        Authorization: `Bearer ${access_token}`
-                    }
-                })
-                    .then((response) => {
-                    console.log(response);
-                });
-            }
-            catch (e) {
-                alert("Chức năng đang phát triển");
-                console.error("lỗi", e);
-            }
-        },
-        mounted() {
-            this.getPatient();
-        },
+            },
+           
+        // deletePatient(id) {
+        //     try {
+        //         axios.delete(`${base_URL}/Patient`, { id }, { headers: {
+        //                 Authorization: `Bearer ${access_token}`
+        //             }
+        //         })
+        //             .then((response) => {
+        //             console.log(response);
+        //         });
+        //     }
+        //     catch (e) {
+        //         alert("Chức năng đang phát triển");
+        //         console.error("lỗi", e);
+        //     }
+        // },
+      
+        
+        
     },
+    
+        mounted() {
+          console.log("mounted");
+          this.getPatient()
+        
+        },
+
     Middleware: 'auth',
 }
 

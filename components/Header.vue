@@ -1,7 +1,7 @@
 <template>
    <div class="header">
      <h2>Quản lý bệnh nhân</h2>
-     <button class="logOutBtn "  id="btn" @click="logOut"></button>
+     <button class="logOutBtn "  id="btn" @click="logOut"> Đăng xuất</button>
    </div>
  </template>
  
@@ -37,14 +37,19 @@
 <script>
 export default {
    methods: {
-      logOut(){
-         localStorage.clear();
-   this.$router.push('/login');
+      async logOut(){
+         localStorage.clear()
+         await this.$auth.logout()
+         this.$router.push('/login')
 },
 btn(){
-   if( localStorage.getItem("isLoggined")==null) 
+ 
+  const isLoggedIn=localStorage.getItem('isLoggedIn');
+
+   if( !isLoggedIn)
    {
       document.getElementById("btn").innerHTML="Đăng nhập"
+      this.$router.push('/login')
    }
    else{
       document.getElementById("btn").innerHTML="Đăng xuất"

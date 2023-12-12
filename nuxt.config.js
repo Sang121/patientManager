@@ -42,44 +42,38 @@ export default {
      '@nuxtjs/axios',
     '@nuxtjs/auth-next'
   ],
-  // auth: {
-  //   strategies: {
-  //     local: {
-  //       endpoints: {
-  //         login: {
-  //           url: 'Auth/login',
-  //           method: 'post',
-  //           propertyName: 'access',
-  //         },
-  //         user: {
-  //           url: 'Auth/user',
-  //           method: 'get',
-  //           propertyName: 'users'
-  //         },
-  //         tokenRequired: true,
-  //         logout: false
-  //       }
-  //     },
-  //     //watchLoggedIn: true,
-  //     // redirect: {
-  //     //   login: '/login',
-  //     //   logout: '/',
-  //     //   callback: '/login',
-  //     //   home: '/'
-  //     // }
-  //   }
-  //   // Options
-  // },
-  // primevue: {
-  //   options: {
-  //     ripple: true
-  //   },
-  //   components: {
-  //     includes: ['Button']
-  //   }
+  axios: {
+    baseURL: 'http://192.168.1.53:9098',
+  },
 
-  // },
-
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+          global: true,
+           required: true,
+           
+           type: 'Bearer'
+        },
+        user: {
+          property: 'user',
+        
+          autoFetch: true
+        },
+        endpoints: {
+          login: { url: 'http://192.168.1.53:9098/Auth/login', method: 'post' },
+          logout: { url: 'http://192.168.1.53:9098/Auth/logout', method: 'get' },
+          user: { url: 'http://192.168.1.53:9098/Auth/user', method: 'get' },
+          // getPatient: { url: 'http://192.168.1.53:9098/Patient', method: 'get' },
+          // updatePatient: { url: 'http://192.168.1.53:9098/Patient/update', method: 'post' },
+          // addPatient: { url: 'http://192.168.1.53:9098/Patient', method: 'post' }
+        },
+        
+      },
+     
+    }
+  },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // baseURL: process.env.API_URL || ' http://192.168.1.53:9098/',
