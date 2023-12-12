@@ -17,21 +17,29 @@
     <form @submit.prevent="addPatient" class="formAddUser " method="POST">
     <div class="form-group">
       <label for="fullName">Họ và tên</label>
+
       <input type="text" class="form-control" id="fullName" v-model="patient.hovaten"  required>
+
+    
+
     </div>
 
     <div class="form-group">
       <label for="namsinh">Năm sinh</label>
+
       <input type="number" class="form-control" id="namsinh"  v-model="patient.namsinh" required> 
     </div>
 
     <div class="form-group">
       <label for="gender">Giới tính</label>
+
       <input type="text" class="form-control" id="gender" v-model="patient.gioitinh" required>
+
     </div>
 
     <div class="form-group">
       <label for="address">Địa chỉ</label>
+
       <input type="text" class="form-control" id="address" v-model="patient.diachi" required>
     </div>
     <div class="form-group">
@@ -69,6 +77,7 @@
     <div class="form-group">
       <label for="chuandoan">Chẩn đoán</label>
       <input type="text" class="form-control" v-model="patient.chandoan" required>
+
     </div>
     <button type="submit" class="btn btn-primary add" >Thêm</button>
 
@@ -193,7 +202,9 @@ input {
 <script>
 import axios from "axios";
 const base_URL = "http://192.168.1.53:9098"
+
 const access_token= localStorage.getItem("auth._token.local"); //get bearer token
+
 
 export default {
 data(){
@@ -207,6 +218,7 @@ methods:{
       //var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
       var patient=
         {
+
           
   "hovaten": this.patient.hovaten,
   "socon": this.patient.socon,
@@ -232,11 +244,13 @@ methods:{
     "mauchay": 0,
     "mota": this.patient.mota,
     "chuandoan": this.patient.chandoan,
+
     "dieutri": "string",
     "hinhanh1": "string",
     "hinhanh2": "string",
     "benhNhan": {
       "id": 0,
+
       "hovaten":this.patient.hovaten,
       "socon": this.patient.socon,
       "namsinh": this.patient.namsinh,
@@ -252,6 +266,7 @@ methods:{
     },
     "hinhanh": [
 
+
     ]
   },
   "hinhanh": [
@@ -262,7 +277,9 @@ methods:{
       axios.post(`${base_URL}/Patient`,
       patient,
       {headers: {
+
           Authorization: access_token,
+
           "Content-type": "application/json; charset=UTF-8"
         },
       }
@@ -272,7 +289,9 @@ methods:{
       //  localStorage.setItem("addPt",JSON.stringify(patient))
         console.log(response)
               setTimeout(() => {
+
                window.location.reload()
+
               }, 300);
           console.log(patient);
         

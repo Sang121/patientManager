@@ -148,7 +148,9 @@ user :{
     }
     
 },
+
 auth: false
+
 
 }
 </script    >

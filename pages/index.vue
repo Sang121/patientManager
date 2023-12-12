@@ -174,9 +174,11 @@ input {
 <script>
 import axios from "axios";
 const base_URL = "http://192.168.1.53:9098"
+
 const access_token= localStorage.getItem("auth._token.local"); //get bearer token
 
 export default {
+
 
     data() {
         return {
@@ -184,6 +186,7 @@ export default {
             patient: {},
         };
     },
+
    
   
     methods: {
@@ -195,13 +198,16 @@ export default {
                     }
                 })
                     .then((response) => {
+
                     if (response.data.total_count == 0) {
                         console.log("Không có data");
                         document.getElementById("list").innerHTML = "Không có bản ghi nào!";
                     }
                     else {
                         this.listPatient = response.data.data;
+
                         console.log("Lấy data thành công",response.data);
+
 
                     }
                 });
@@ -209,6 +215,7 @@ export default {
             catch (e) {
                 console.log("Không thể lấy được thông tin bệnh nhân", e.message);
             }
+
 },
         seeMore(index) {
             //localStorage.setItem("patient", JSON.stringify(this.listPatient[index]))
@@ -247,6 +254,7 @@ export default {
           this.getPatient()
         
         },
+
     Middleware: 'auth',
 }
 

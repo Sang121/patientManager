@@ -30,13 +30,17 @@
 
           
         </tr>
+
         <tr> <th>Cân nặng</th>
+
+    
               <th>Tiểu sử</th>
               <th>Lâm sàng</th>
               <th>Mạch</th>
 
               <th> Huyết áp cao</th>
                <th>Mô tả</th>
+
               <th>Chuẩn đoán</th></tr> 
              <tr >
                 <td><input type="text" v-model="medicalRecord.chieucao" name="cannang">  </td>
@@ -52,6 +56,7 @@
 
           
         </tr>
+
 
     </table>
     <button type="submit" class="btn btn-primary updateBtn" >Sửa</button>
@@ -91,7 +96,9 @@
   margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
+
   width: 80%;
+
 }
 
 .modal-title {
@@ -100,7 +107,9 @@
 
 .formAddUser {
   margin-left: 20%;
+
   width: 80%;
+
 }
 
 .addUser {
@@ -112,13 +121,17 @@
 <script>
 import axios from "axios";
 const base_URL = "http://192.168.1.53:9098"
+
 const access_token= localStorage.getItem("auth._token.local"); //get bearer token
+
 export default {
     data(){
     return {
 
         patient:{},
+
         medicalRecord:{},
+
     };
 },
     methods: {
@@ -126,13 +139,17 @@ export default {
 
         updatePatient(){
   
+
   this.patient.medicalRecord = this.medicalRecord
+
   var partientUpdate=this.patient
 try{
   axios.post(`${base_URL}/Patient/update`,
   partientUpdate,
   {headers: {
+
       Authorization:access_token
+
     }
   }
   ) 
@@ -156,7 +173,10 @@ unSee() {
 
     },
 
+
     name: 'UpdateForm',
+
+
     }
 
 </script>
