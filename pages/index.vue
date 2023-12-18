@@ -175,10 +175,9 @@ import axios from "axios";
 const base_URL = "http://192.168.1.53:9098"
 
 const access_token= localStorage.getItem("auth._token.local"); //get bearer token
-
+var today= new Date()                                                      
+  var dateToday = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
 export default {
-
-
     data() {
         return {
             listPatient: [],
@@ -192,7 +191,7 @@ export default {
       async getPatient( ) {
 
             try {
-               await axios.get(`${base_URL}/Patient`, { headers: {
+               await axios.get(`${base_URL}/Patient?date=2023-12-18T09:07:23.205Z`, { headers: {
                         Authorization: access_token
                     }
                 })
@@ -224,6 +223,7 @@ export default {
           
                 const modal = document.getElementById('addPatient');
                 modal.classList.remove('hide');
+                console.log(today.toISOString() );
             },
            
         // deletePatient(id) {

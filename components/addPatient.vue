@@ -10,20 +10,14 @@
     X
 </button>
 
-         
           </div>
 
       <div class="modal-body" >
     <form @submit.prevent="addPatient" class="formAddUser " method="POST">
     <div class="form-group">
       <label for="fullName">Họ và tên</label>
-
       <input type="text" class="form-control" id="fullName" v-model="patient.hovaten"  required>
-
-    
-
-    </div>
-
+    </div>  
     <div class="form-group">
       <label for="namsinh">Năm sinh</label>
 
@@ -171,7 +165,7 @@ input {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-.btn {
+.btn {  
   display: inline-block;
   font-weight: 400;
   color:white;
@@ -204,8 +198,8 @@ import axios from "axios";
 const base_URL = "http://192.168.1.53:9098"
 
 const access_token= localStorage.getItem("auth._token.local"); //get bearer token
-
-
+  var today= new Date();
+  var dateToday = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
 export default {
 data(){
     return {
@@ -215,7 +209,7 @@ data(){
 },
 methods:{
     addPatient(){
-      //var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+      
       var patient=
         {
 
@@ -227,7 +221,7 @@ methods:{
   "diachi": this.patient.diachi,
   "gioitinh": this.patient.gioitinh,
   "nghenghiep": this.patient.nghenghiep,
-  "ngaytao": "2023-12-12T03:24:48.462Z",
+  "ngaytao": today.toISOString(),
   "ngayketthuc": "2023-12-12T03:24:48.462Z",
   "medicalRecord": {
     "id": 0,
@@ -254,11 +248,11 @@ methods:{
       "hovaten":this.patient.hovaten,
       "socon": this.patient.socon,
       "namsinh": this.patient.namsinh,
-      "sohoso": "",
+      "sohoso": "", 
       "diachi": this.patient.diachi,
       "gioitinh": this.patient.gioitinh,
       "nghenghiep":this.patient.nghenghiep,
-      "ngaytao": "2023-12-12T03:24:48.462Z",
+      "ngaytao":  today.toISOString(),
       "ngayketthuc": "2023-12-12T03:24:48.462Z",
       "medicalRecords": [
 
@@ -285,14 +279,14 @@ methods:{
       }
       )
       .then((response) => {
-        alert("Thêm thành công")
+        alert("Thêm thành công", response)
       //  localStorage.setItem("addPt",JSON.stringify(patient))
-        console.log(response)
-              setTimeout(() => {
+        // console.log(response)
+        //       setTimeout(() => {
 
-               window.location.reload()
+        //        window.location.reload()
 
-              }, 300);
+        //       }, 300);
           console.log(patient);
         
       })
