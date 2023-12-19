@@ -1,0 +1,23 @@
+[
+  {
+    "name": "login",
+    "path": "/login",
+    "component": "D:\\\\UserManager\\\\pages\\\\login.vue",
+    "chunkName": "pages/login",
+    "_name": "_01cee813"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "D:\\\\UserManager\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_382744fc"
+  },
+  {
+    "name": "patient-id",
+    "path": "/patient/:id?",
+    "component": "D:\\\\UserManager\\\\pages\\\\patient\\\\_id.vue",
+    "chunkName": "pages/patient/_id",
+    "_name": "_19539b9b"
+  }
+]
