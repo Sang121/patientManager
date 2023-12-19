@@ -45,6 +45,10 @@
       <input type="number" class="form-control" v-model="patient.socon" required>
     </div>
     <div class="form-group">
+      <label for="chieucao">Chiều cao</label>
+      <input type="number" class="form-control" v-model="patient.chieucao" required>
+    </div>
+    <div class="form-group">
       <label for="cannang">Cân nặng</label>
       <input type="number" class="form-control" v-model="patient.cannang" required>
     </div>
@@ -61,7 +65,7 @@
       <input type="number" class="form-control" v-model="patient.mach" required>
     </div>
     <div class="form-group">
-      <label for="huyetapcao">Nhiệt độ</label>
+      <label for="nhietdo">Nhiệt độ</label>
       <input type="number" class="form-control" v-model="patient.nhietdo" required>
     </div>
     <div class="form-group">
@@ -71,6 +75,11 @@
     <div class="form-group">
       <label for="chuandoan">Chẩn đoán</label>
       <input type="text" class="form-control" v-model="patient.chandoan" required>
+
+    </div>
+    <div class="form-group">
+      <label for="dieutri">Cách điều trị</label>
+      <input type="text" class="form-control" v-model="patient.dieutri" required>
 
     </div>
     <button type="submit" class="btn btn-primary add" >Thêm</button>
@@ -226,10 +235,10 @@ methods:{
   "medicalRecord": {
     "id": 0,
     "benhnhan_id": 0,
-    "cannang": "",
-    "chieucao": "",
+    "cannang": this.patient.cannang,
+    "chieucao": this.patient.chieucao,
     "tiensu": this.patient.tiensu,
-    "lamsang": "",
+    "lamsang": this.patient.lamsang,
     "mach": this.patient.mach,
     "nhietdo":this.patient.nhietdo,
     "huyetapcao": "",
@@ -239,7 +248,7 @@ methods:{
     "mota": this.patient.mota,
     "chuandoan": this.patient.chandoan,
 
-    "dieutri": "",
+    "dieutri": this.patient.dieutri,
     "hinhanh1": "",
     "hinhanh2": "",
     "benhNhan": {
@@ -281,12 +290,12 @@ methods:{
       .then((response) => {
         alert("Thêm thành công", response)
       //  localStorage.setItem("addPt",JSON.stringify(patient))
-        // console.log(response)
-        //       setTimeout(() => {
+        console.log(response)
+              setTimeout(() => {
 
-        //        window.location.reload()
+               window.location.reload()
 
-        //       }, 300);
+              }, 300);
           console.log(patient);
         
       })

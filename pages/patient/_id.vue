@@ -63,11 +63,7 @@
           <td>{{ medicalRecord.mach }}</td>
 
         </tr>
-        <tr>
-          <th>Huyết áp:</th>
-          <td>{{ medicalRecord.huyetapcao }}</td>
-
-        </tr>
+      
         <tr>
           <th>Mô tả:</th>
           <td>{{ medicalRecord.mota }}</td>
@@ -102,6 +98,7 @@
               <th>Họ và tên</th>
               <th>Năm sinh</th>
               <th>Giới tính</th>
+          <th> Địa chỉ </th>
             </tr>
            
             <tr >
@@ -109,33 +106,45 @@
             <td><input type="text" v-model=" patient.hovaten " name="hovaten">  </td>
             <td><input type="number" v-model=" patient.namsinh " name="tuoi">  </td>
             <td><input type="text" v-model=" patient.gioitinh " name="gioitinh">  </td>
+            <td><input type="text" v-model=" patient.diachi " name="diachi">  </td>
           </tr>
           <tr> 
-              <th> Địa chỉ </th>
+
                <th>Nghề Nghiệp</th>
               <th>Số con</th>
+              <th>Cân nặng</th>
+              <th>Chiều cao</th>
             </tr>
             <tr> 
-            <td><input type="text" v-model=" patient.diachi " name="diachi">  </td>
+           
             <td><input type="text" v-model=" patient.nghenghiep " name="nghenghiep">  </td>
             <td><input type="number" v-model=" patient.socon " name="socon">  </td>
+            <td><input type="text" v-model="medicalRecord.cannang" name="cannang">  </td>
+            <td><input type="text" v-model="medicalRecord.chieucao" name="chieucao">  </td>
+           
         </tr>
-        <!-- <tr> <th>Cân nặng</th>
-              <th>Tiểu sử</th>
+        <tr> 
+          <th>Tiền sử</th>
               <th>Lâm sàng</th>
               <th>Mạch</th>
-              <th> Huyết áp cao</th>
                <th>Mô tả</th>
-              <th>Chuẩn đoán</th></tr> 
-             <tr >
-                <td><input type="text" v-model="medicalRecord.cannang" name="cannang">  </td>
-            <td><input type="text" v-model=" medicalRecord.tieusu " name="tieusu">  </td>
+           
+          </tr> 
+             <tr >  
+              <td><input type="text" v-model=" medicalRecord.tiensu " name="tieusu">  </td>  
             <td><input type="text" v-model=" medicalRecord.lamsang " name="lamsang">  </td>
             <td><input type="text" v-model="medicalRecord.mach " name="mach">  </td>
-            <td><input type="text" v-model=" medicalRecord.huyetapcao " name="huyetapcao">  </td>
             <td><input type="text" v-model=" medicalRecord.mota " name="mota">  </td>
-            <td><input type="text" v-model=" medicalRecord.chuandoan" name="chuandoan">  </td>
-        </tr> -->
+          
+        </tr>
+        <tr> 
+          <th>Chuẩn đoán</th>
+          <th>Điều trị</th></tr>
+
+      <tr>  
+        <td><input type="text" v-model=" medicalRecord.chuandoan" name="chuandoan">  </td>
+        <td><input type="text" v-model=" medicalRecord.dieutri" name="dieutri">  </td>
+        </tr>
     </table>
     <button type="submit" class="btn btn-primary updateBtn" >Gửi</button>
   </form>
@@ -220,7 +229,9 @@ export default {
     data(){
     return {
         patient:{},
-        medicalRecord:{},
+        medicalRecord:{
+   benhNhan:{},
+        },
     };
 },
 
@@ -272,7 +283,7 @@ export default {
                     }
                     },
     updatePatient(){
-        this.patient.medicalRecords[0] =this.medicalRecord
+        this.patient.medicalRecord=this.medicalRecord
         var partientUpdate=this.patient
         console.log("partientUpdate",partientUpdate)  
           try{
@@ -287,6 +298,7 @@ export default {
       
               alert("Update thông tin thành công")
               console.log("res",response);
+              console.log("partientUpdate",partientUpdate)
               setTimeout(() => {
                 window.location.reload()
                 }, 300);
