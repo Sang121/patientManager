@@ -54,44 +54,55 @@
 <style>
 .container {
   padding: 10px;
-  height: 1000px;
-  background-color: #ececec;
-  display: flex;
-  flex-direction: column;
-}
+    height: 1000px;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+  }
 
-.listUser {
-  display: flex;
-  padding: 20px;
-  background-color: white;
-  justify-content: center;
-  align-content: center;
-  flex-direction: column;
-}
+  .listUser {
+    display: flex;
+    padding: 10px;
+    background-color: white;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
 
 table {
   width: 100%;
-  border-collapse: collapse;
+    border-collapse: collapse;
+    margin-top: 10px;
 }
 
 th,
-td {
-  padding: 12px;
-  text-align: left;
-}
+  td {
+    padding: 15px;
+    text-align: left;
+  }
 
-button {
-  border: none;
-  border-radius: 10%;
-  padding: 8px;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
+  button {
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
 
-button:hover {
-  transform: scale(1.1);
-}
+  button:hover {
+    background-color: #007bff;
+    color: white;
+    transform: scale(1.05);
+  }
 
+  .btn-danger {
+    background-color: #dc3545;
+  }
+  .btn-danger:hover {
+    background-color: #c82333;
+  }
 .close {
   height: 80%;
   background-color: transparent;
@@ -180,6 +191,8 @@ input {
 import axios from "axios";
 import DatePicker from 'vue2-datepicker';
   import 'vue2-datepicker/index.css';
+  import { Button } from 'primevue/button'
+
 const base_URL = "http://192.168.1.53:9098"
 
 const access_token= localStorage.getItem("auth._token.local"); //get bearer token
@@ -194,7 +207,7 @@ export default {
         };
     },
 
-    components: { DatePicker },
+    components: { DatePicker,Button },
   
     methods: {
       async getPatient(time) {
@@ -260,12 +273,7 @@ export default {
         
     },
     
-        mounted() {
-          console.log("mounted");
-          this.getPatient()
-    
-        
-        },
+     
 
     Middleware: 'auth',
 }

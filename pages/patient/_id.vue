@@ -39,7 +39,7 @@
       <h3>MedicalRecord</h3>
       <table class="records"> 
         <tr>
-          <th>Chiều cao:</th>
+          <th>Chiều cao(cm):</th>
           <td>{{ medicalRecord.chieucao }}</td>
 
         </tr>
@@ -113,7 +113,7 @@
                <th>Nghề Nghiệp</th>
               <th>Số con</th>
               <th>Cân nặng</th>
-              <th>Chiều cao</th>
+              <th>Chiều cao(cm)</th>
             </tr>
             <tr> 
            
@@ -176,7 +176,7 @@
 
   /* Main Content Styles */
   .main {
-    margin-top: 20px;
+    margin-top: 10px;
   }
 
   /* Table Styles */
@@ -205,7 +205,6 @@
   .addUser {
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #28a745;
     color: white;
     border: none;
     border-radius: 4px;

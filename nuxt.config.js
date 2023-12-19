@@ -23,10 +23,19 @@ export default {
     '@nuxtjs/composition-api/module'
   ],
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['primeflex/primeflex.css'],
+  css: 
+  [
+    'primevue/resources/themes/saga-blue/theme.css', // Chọn một theme theo ý muốn
+    'primevue/resources/primevue.min.css',
+    'primeicons/primeicons.css',
+    'primeflex/primeflex.css'
+
+
+],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [    { src: '@/plugins/primevue.js', mode: 'client' }, // Tạo file plugin ở bước 3
+],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -88,6 +97,7 @@ export default {
     transpile: ['primevue'],
   },
   router: {
-   // middleware: ['auth']
+  //  middleware: ['auth']
   },
+  
 }
