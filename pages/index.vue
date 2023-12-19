@@ -7,6 +7,12 @@
         <button type="button" class="addUser btn btn-primary" @click="addBtn()">  Thêm bệnh nhân</button>
 
     </div>
+    <div>
+    <date-picker v-model="time" valueType="format">Chọn ngày</date-picker>
+
+    <button type="button" class="addUser btn btn-primary" @click="getPatient(time)">  Lấy thông tin </button>
+
+  </div>
     <!-- Danh sách bệnh nhân -->
     <table border="1">
         <tr> 
@@ -172,26 +178,29 @@ input {
 </style>
 <script>
 import axios from "axios";
+import DatePicker from 'vue2-datepicker';
+  import 'vue2-datepicker/index.css';
 const base_URL = "http://192.168.1.53:9098"
 
 const access_token= localStorage.getItem("auth._token.local"); //get bearer token
 var today= new Date()                                                      
-  var dateToday = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
 export default {
     data() {
         return {
             listPatient: [],
             patient: {},
+            time: null,
+       
         };
     },
 
-   
+    components: { DatePicker },
   
     methods: {
-      async getPatient( ) {
+      async getPatient(time) {
 
             try {
-               await axios.get(`${base_URL}/Patient?date=2023-12-18T09:07:23.205Z`, { headers: {
+               await axios.get(`${base_URL}/Patient?date=${time}`, { headers: {
                         Authorization: access_token
                     }
                 })
@@ -199,9 +208,11 @@ export default {
 
                     if (response.data.total_count == 0) {
                         console.log("Không có data");
-                        document.getElementById("list").innerHTML = "Không có bản ghi nào!";
+                        this.listPatient=[]
+                        document.getElementById("list").textContent = "Không có bản ghi nào!";
                     }
                     else {
+                      document.getElementById("list").textContent = ""
                         this.listPatient = response.data.data;
 
                         console.log("Lấy data thành công",response.data);
@@ -218,6 +229,9 @@ export default {
         seeMore(index) {
            
             this.$router.push(`/patient?id=${index}`)
+        },
+        getTime(){
+          this.time=time
         },
         addBtn() {
           
@@ -249,6 +263,7 @@ export default {
         mounted() {
           console.log("mounted");
           this.getPatient()
+    
         
         },
 
