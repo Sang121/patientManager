@@ -1,59 +1,67 @@
 <template>
     
     <div class="container"> 
-        <Header /> <hr/>  
+        <Header /> <br>
     <div class="listUser"> 
         <div class="addUser">
-        <button type="button" class="addUser btn btn-primary" @click="addBtn()">  Thêm bệnh nhân</button>
+        <Button  @click="addBtn()" label=" Thêm bệnh nhân"/> 
 
     </div>
     <div>
     <date-picker v-model="time" valueType="format">Chọn ngày</date-picker>
 
-    <button type="button" class="addUser btn btn-primary" @click="getPatient(time)">  Lấy thông tin </button>
+    <Button @click="getPatient(time)" label="Lấy thông tin "/> 
 
   </div>
     <!-- Danh sách bệnh nhân -->
-    <table border="1">
-        <tr> 
-          <th> STT</th>
+    <div class="card">
+      
+        <DataTable :value="listPatient"  paginator :rows="5" :rowsPerPageOptions="[5, 10, 20]" tableStyle="min-width: 50rem"
+                paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+                currentPageReportTemplate="{first} to {last} of {totalRecords}">
+            <template #paginatorstart>
+                <Button type="button" icon="pi pi-refresh " @click="getPatient(time)" text />
+            </template>
+            <template #paginatorend>
+                <Button type="button" icon="pi pi-download" text />
+            </template>
+           
+              
+              <Column field="id" header="ID"   style="width:5%"></Column>
 
-            <th> ID bệnh nhân</th>
-            <th>Họ và tên</th>
-            <th>Năm sinh</th>
-            <th>Giới tính</th>
+              <Column field="hovaten" header="Họ và tên" style="width: 25%"></Column>
+              <Column field="namsinh" header="Năm sinh"  style="width: 5%"></Column>
+              <Column field="gioitinh" header="Giới tính" style="width: 15%"></Column>
+              <Column field="diachi" header="Địa chỉ" style="width: 25%"></Column>
+              <Column field="nghenghiep" header="Nghề nghiệp" style="width: 25%"></Column>
 
-            <th> Địa chỉ </th>
-                        <th>Xem chi tiết</th>
-            <th>More</th>
-        </tr>
-        <tr v-for=" (patient,index) in listPatient" :key="index">
-          <td>{{ index +1 }}</td>
+              <Column  header="Xem chi tiết" style="width: 20%"> 
+                <template #body="slotProps">
+                  <Button id="btn" @click="seeMore(  slotProps.data.id)" label="Xem" />
+                </template>
 
-            <td>{{ patient.id }}</td>
-            <td>{{ patient.hovaten }}</td>
-            <td>{{ patient.namsinh }}</td>
-            <td>{{ patient.gioitinh }}</td>
-            <td>{{ patient.diachi }}</td>
+              </Column>
+            
 
-            <td><Button  @click="seeMore(patient.id)" class="btn btn-primary"> Xem </Button></td>
-            <td><Button  class="btn btn-primary">Xóa </Button></td>
-        </tr>
-       
-    </table>
-    <h4 id="list" > </h4>
+              
+                <template #body="slotProps">
+
+                  {{slotProps.data  }}
+                </template>
+             
+        </DataTable>
+    </div>
+    
+
     </div>
 
 <!-- Form add patient -->
     <addPatient/>
-
-
-
 </div>
 </template>
 <style>
 .container {
-  padding: 10px;
+  padding: 5px;
     height: 1000px;
     background-color: #f5f5f5;
     display: flex;
@@ -61,6 +69,7 @@
   }
 
   .listUser {
+
     display: flex;
     padding: 10px;
     background-color: white;
@@ -74,7 +83,7 @@
 table {
   width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 th,
@@ -97,12 +106,7 @@ th,
     transform: scale(1.05);
   }
 
-  .btn-danger {
-    background-color: #dc3545;
-  }
-  .btn-danger:hover {
-    background-color: #c82333;
-  }
+
 .close {
   height: 80%;
   background-color: transparent;
@@ -190,11 +194,13 @@ input {
 <script>
 import axios from "axios";
 import DatePicker from 'vue2-datepicker';
-  import 'vue2-datepicker/index.css';
-  import { Button } from 'primevue/button'
-
+import 'vue2-datepicker/index.css';
+import Button from 'primevue/button';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import ColumnGroup from 'primevue/columngroup';   // optional
+import Row from 'primevue/row'; 
 const base_URL = "http://192.168.1.53:9098"
-
 const access_token= localStorage.getItem("auth._token.local"); //get bearer token
 var today= new Date()                                                      
 export default {
@@ -220,15 +226,17 @@ export default {
                     .then((response) => {
 
                     if (response.data.total_count == 0) {
-                        console.log("Không có data");
+                        alert("Không có data");
                         this.listPatient=[]
-                        document.getElementById("list").textContent = "Không có bản ghi nào!";
                     }
                     else {
-                      document.getElementById("list").textContent = ""
+                     
                         this.listPatient = response.data.data;
+      
 
                         console.log("Lấy data thành công",response.data);
+                       
+
 
 
                     }
@@ -241,10 +249,11 @@ export default {
 },
         seeMore(index) {
            
-            this.$router.push(`/patient?id=${index}`)
+            window.open(`/patient?id=${index}`)
         },
         getTime(){
-          this.time=time
+          time=this.time
+          
         },
         addBtn() {
           
@@ -273,7 +282,13 @@ export default {
         
     },
     
-     
+     mounted(){
+      console.log(this.time)
+      if(this.time==null){
+       this.time = today.toISOString()
+       this.getPatient(today.toISOString())
+      }
+     },
 
     Middleware: 'auth',
 }

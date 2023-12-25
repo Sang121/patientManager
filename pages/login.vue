@@ -3,20 +3,17 @@
     <h2><a href="/" class="logo">Quản lý bệnh nhân</a></h2><br/>
     <div class="login">
       <form action="#" method="POST" @submit.prevent="loginUser">
-        <table>
-          <tr>
-            <th>User name</th>
-            <th><input v-model="user.username" type="text" name="username"></th>
-          </tr>
-          <tr>
-            <th>Password</th>
-            <th><input v-model="user.password" type="password" name="password"></th>
-          </tr>
-          <tr>
-            <th></th>
-            <th><button type="submit" class="loginBtn">Đăng nhập</button></th>
-          </tr>
-        </table>
+        <div class="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5">
+        <div class="flex flex-wrap justify-content-center align-items-center gap-2">
+            <label class="w-6rem">Username</label>
+            <input id="username"  v-model="user.username" type="text" class="w-12rem" />
+        </div>
+        <div class="flex flex-wrap justify-content-center align-items-center gap-2">
+            <label class="w-6rem">Password</label>
+            <input id="password" v-model="user.password" type="password" class="w-12rem" />
+        </div>
+        <Button label="Login" icon="pi pi-user" type="submit" class="w-10rem mx-auto"></Button>
+    </div>
       </form>
     </div>
   </div>
@@ -25,23 +22,21 @@
 <style>
 .container {
   font-family: 'Arial', sans-serif;
+  
 }
 
 .login {
-  margin-top: 10%;
-  display: flex;
-  align-items: center;
+
   justify-content: center;
+  align-items: center;
+  margin-left: 20%;
+  margin-top: 10%;
 }
 
-.login form {
-  background-color: #dfceb9;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 2px 8px rgba(99, 99, 99, 0.2);
-}
+
 
 .logo {
+  position: fixed;
   margin: 20px;
   box-shadow: 0px 2px 8px rgba(99, 99, 99, 0.2);
   padding: 15px;
@@ -54,27 +49,11 @@ a {
   color: black;
 }
 
-.loginBtn {
-  margin-top: 10px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #3498db;
-  color: #ffffff;
-  font-size: 16px;
-  transition: transform 0.3s, background-color 0.3s;
-}
 
-.loginBtn:hover {
-  transform: scale(1.1);
-  background-color: #2980b9;
-  cursor: pointer;
-}
 </style>
 <script>
 
-import { ref } from 'vue';
-import axios from 'axios';
+
 const isLoggined =localStorage.getItem("isLoggined")
 
 export default {
@@ -121,9 +100,8 @@ user :{
       try {
       const res=  await this.$auth.loginWith('local', {
           data: this.user
-          
         })
-        
+        console.log("res",res)
         if (res.data.status == "OK") {
       // Chuyển hướng đến trang home.
       this.$auth.setUser({
@@ -143,7 +121,7 @@ user :{
 
     }
       } catch (err) {
-        console.log(err)
+        console.log("error",err)
       }
     }
     

@@ -1,43 +1,33 @@
 <template>
    <div class="header">
-     <h2><a href="/ ">Quản lý bệnh nhân</a></h2>
-     <button class="logOutBtn "  id="btn" @click="logOut"> Đăng xuất</button>
+     <h2 class="logo"><a href="/ ">Quản lý bệnh nhân</a></h2>
+     <!-- <button class="logOutBtn "  id="btn" @click="logOut"> Đăng xuất</button> -->
+     <Button  id="btn" @click="logOut" label="Đăng xuất" />
+
    </div>
- </template>
- 
+</template>
  <style>
- .header{
-   background-color: #ffffff;
-   display: flex;
-   align-items: center;
-   padding: 10px;
-   justify-content: space-between;
-   padding-right: 20px;
-   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-   
- }
- a{
-  text-decoration: none;
-color: black;}
- 
- .logOutBtn {
-   width: 100px;
-   height: 30px;
-   border: none;
-   border-radius: 5px;
-   cursor: pointer;
-   background-color: #3498db;
-   color: #ffffff;
-   font-size: 14px;
-   transition: transform 0.3s, background-color 0.3s;
- }
- 
- .logOutBtn:hover {
-   transform: scale(1.1);
-   background-color: #2980b9;
- }
+  .header{
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: space-between;
+    padding-right: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    
+  }
+  .logo{
+  
+  }
+  a{
+    text-decoration: none;
+  color: black;}
 </style>
 <script>
+import Button from 'primevue/button';
+
 export default {
    methods: {
       async logOut(){
