@@ -81,7 +81,7 @@
         </tr>
 
       </table>
-    <button type="button" class="addUser btn btn-primary" @click="edit()">  Sửa thông tin </button>
+    <Button type="button" icon="pi pi-user-edit"  @click="edit()" label="Sửa thông tin "/>  
 <!-- <updatePatient/> -->
 <div class="update"> 
     <div class="modal hide " tabindex="-1" role="dialog" id="seeMore">
@@ -91,8 +91,8 @@
               <span aria-hidden="true">&times;</span>
             </button> 
           <div class="modal-header">
-            <form @submit.prevent="updatePatient" class=" " method="POST">
-            <table id="seeMore" class="" border="1">
+            <form @submit.prevent="updatePatient"  method="POST">
+            <table id="seeMore"  border="1">
           <tr>
       
               <th>Họ và tên</th>
@@ -146,7 +146,7 @@
         <td><input type="text" v-model=" medicalRecord.dieutri" name="dieutri">  </td>
         </tr>
     </table>
-    <button type="submit" class="btn btn-primary updateBtn" >Gửi</button>
+    <Button type="submit" icon="pi pi-save"  label="Lưu" />
   </form>
   </div>
 </div>
@@ -160,7 +160,7 @@
   /* Container Styles */
   .container {
 
-    margin: 0 auto;
+    margin: 0 ;
     padding: 5px;
     background-color: #f8f8f8;
     border: 1px solid #ddd;
@@ -212,16 +212,24 @@
   }
 
   /* Responsive Styles */
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     .container {
       max-width: 100%;
     }
+  } */
+  form{
+    width: 100%;
+  }
+  .modal-content {
+
+    width: 80%;
   }
 </style>
 <script>
 import axios from "axios";
 const base_URL = "http://192.168.1.53:9098"
 const access_token= localStorage.getItem("auth._token.local"); //get bearer token
+import Button from 'primevue/button';
 
 export default {
  

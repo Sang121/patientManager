@@ -121,10 +121,10 @@ input {
   
   border-radius: 10px;
   background-color: #fefefe;
-  margin: 10% auto;
+  margin: 10%;
   padding: 20px;
   border: 1px solid #888;
-  width: 50%;
+  width:35%;
 }
 
 .modal-title {

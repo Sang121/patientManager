@@ -12,7 +12,7 @@
             <label class="w-6rem">Password</label>
             <input id="password" v-model="user.password" type="password" class="w-12rem" />
         </div>
-        <Button label="Login" icon="pi pi-user" type="submit" class="w-10rem mx-auto"></Button>
+        <Button label="Login" icon="pi pi-user" type="submit" class="w-10rem mx-auto"/>
     </div>
       </form>
     </div>
@@ -55,6 +55,7 @@ a {
 
 
 const isLoggined =localStorage.getItem("isLoggined")
+import Button from 'primevue/button';
 
 export default {
   

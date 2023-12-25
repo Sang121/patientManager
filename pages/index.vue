@@ -4,29 +4,22 @@
         <Header /> <br>
     <div class="listUser"> 
         <div class="addUser">
-        <Button  @click="addBtn()" label=" Thêm bệnh nhân"/> 
+        <Button icon="pi pi-user"  @click="addBtn()" label=" Thêm bệnh nhân"/> 
 
     </div>
     <div>
     <date-picker v-model="time" valueType="format">Chọn ngày</date-picker>
 
-    <Button @click="getPatient(time)" label="Lấy thông tin "/> 
+    <Button icon="pi pi-download" @click="getPatient(time)" label="Lấy thông tin "/> 
 
   </div>
     <!-- Danh sách bệnh nhân -->
     <div class="card">
       
-        <DataTable :value="listPatient"  paginator :rows="5" :rowsPerPageOptions="[5, 10, 20]" tableStyle="min-width: 50rem"
+        <DataTable :value="listPatient"  paginator :rows="5" :rowsPerPageOptions="[5, 10, 20]" 
                 paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                 currentPageReportTemplate="{first} to {last} of {totalRecords}">
-            <template #paginatorstart>
-                <Button type="button" icon="pi pi-refresh " @click="getPatient(time)" text />
-            </template>
-            <template #paginatorend>
-                <Button type="button" icon="pi pi-download" text />
-            </template>
-           
-              
+
               <Column field="id" header="ID"   style="width:5%"></Column>
 
               <Column field="hovaten" header="Họ và tên" style="width: 25%"></Column>
@@ -37,7 +30,7 @@
 
               <Column  header="Xem chi tiết" style="width: 20%"> 
                 <template #body="slotProps">
-                  <Button id="btn" @click="seeMore(  slotProps.data.id)" label="Xem" />
+                  <Button id="btn" @click="seeMore(  slotProps.data.id)"  icon="pi pi-eye" label="Xem" />
                 </template>
 
               </Column>
@@ -80,17 +73,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
-table {
-  width: 100%;
-    border-collapse: collapse;
-    margin-top: 5px;
-}
 
-th,
-  td {
-    padding: 15px;
-    text-align: left;
-  }
 
   button {
     border: none;
@@ -144,7 +127,7 @@ input {
 .add {
   display: flex;
   justify-content: space-around;
-  margin-left: 45%;
+ 
 }
 
 .form-control:focus {
@@ -166,18 +149,6 @@ input {
   transition: background-color 0.15s;
 }
 
-.btn:hover {
-  background-color: #0056b3;
-}
-
-.btn-primary {
-  background-color: #007bff;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-}
-
 .update {
   display: flex;
   flex-direction: column;
@@ -185,21 +156,27 @@ input {
   align-items: center;
 }
 
-.updateBtn {
-  margin-top: 10px;
-  width: 20%;
-  margin-left: 40%;
+
+/* @media screen and (max-width: 550px){ 
+  .p-datatable-tbody {
+    border: 0 none;
 }
+
+.p-datatable-tbody{
+
+    width: 500px !important;
+    align-items: center;
+    justify-content: space-between;
+}
+
+} */
 </style>
 <script>
 import axios from "axios";
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
 import Button from 'primevue/button';
-import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
-import ColumnGroup from 'primevue/columngroup';   // optional
-import Row from 'primevue/row'; 
+
 const base_URL = "http://192.168.1.53:9098"
 const access_token= localStorage.getItem("auth._token.local"); //get bearer token
 var today= new Date()                                                      
@@ -226,8 +203,9 @@ export default {
                     .then((response) => {
 
                     if (response.data.total_count == 0) {
-                        alert("Không có data");
+                       
                         this.listPatient=[]
+                        alert("Không có data");
                     }
                     else {
                      

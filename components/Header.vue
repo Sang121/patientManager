@@ -2,7 +2,7 @@
    <div class="header">
      <h2 class="logo"><a href="/ ">Quản lý bệnh nhân</a></h2>
      <!-- <button class="logOutBtn "  id="btn" @click="logOut"> Đăng xuất</button> -->
-     <Button  id="btn" @click="logOut" label="Đăng xuất" />
+     <Button icon="pi pi-sign-out"  id="btn" @click="logOut" label="Đăng xuất" />
 
    </div>
 </template>
@@ -41,13 +41,9 @@ btn(){
 
    if( !isLoggedIn)
    {
-      document.getElementById("btn").innerHTML="Đăng nhập"
       this.$router.push('/login')
    }
-   else{
-      document.getElementById("btn").innerHTML="Đăng xuất"
 
- }
 }
 
 },
