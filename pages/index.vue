@@ -1,7 +1,7 @@
 <template>
     
     <div class="container"> 
-        <Header /> <hr/>  
+        <Header /> <br>
     <div class="listUser"> 
         <div class="addUser">
         <Button  @click="addBtn()" label=" Thêm bệnh nhân"/> 
@@ -16,7 +16,7 @@
     <!-- Danh sách bệnh nhân -->
     <div class="card">
       
-        <DataTable :value="listPatient"  paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 50rem"
+        <DataTable :value="listPatient"  paginator :rows="5" :rowsPerPageOptions="[5, 10, 20]" tableStyle="min-width: 50rem"
                 paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                 currentPageReportTemplate="{first} to {last} of {totalRecords}">
             <template #paginatorstart>
@@ -26,19 +26,16 @@
                 <Button type="button" icon="pi pi-download" text />
             </template>
            
-              <Column  header="STT" style="width:5%">
-                <template #body="data">
-
-                  {{ data.index+1 }}
-                </template>
-              </Column>
+              
               <Column field="id" header="ID"   style="width:5%"></Column>
 
               <Column field="hovaten" header="Họ và tên" style="width: 25%"></Column>
               <Column field="namsinh" header="Năm sinh"  style="width: 5%"></Column>
               <Column field="gioitinh" header="Giới tính" style="width: 15%"></Column>
               <Column field="diachi" header="Địa chỉ" style="width: 25%"></Column>
-              <Column field="id" header="Xem chi tiết" style="width: 20%"> 
+              <Column field="nghenghiep" header="Nghề nghiệp" style="width: 25%"></Column>
+
+              <Column  header="Xem chi tiết" style="width: 20%"> 
                 <template #body="slotProps">
                   <Button id="btn" @click="seeMore(  slotProps.data.id)" label="Xem" />
                 </template>
@@ -46,7 +43,12 @@
               </Column>
             
 
+              
+                <template #body="slotProps">
 
+                  {{slotProps.data  }}
+                </template>
+             
         </DataTable>
     </div>
     
@@ -59,7 +61,7 @@
 </template>
 <style>
 .container {
-  padding: 10px;
+  padding: 5px;
     height: 1000px;
     background-color: #f5f5f5;
     display: flex;
@@ -67,6 +69,7 @@
   }
 
   .listUser {
+
     display: flex;
     padding: 10px;
     background-color: white;
@@ -80,7 +83,7 @@
 table {
   width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 th,
@@ -193,6 +196,10 @@ import axios from "axios";
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
 import Button from 'primevue/button';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import ColumnGroup from 'primevue/columngroup';   // optional
+import Row from 'primevue/row'; 
 const base_URL = "http://192.168.1.53:9098"
 const access_token= localStorage.getItem("auth._token.local"); //get bearer token
 var today= new Date()                                                      
@@ -219,7 +226,7 @@ export default {
                     .then((response) => {
 
                     if (response.data.total_count == 0) {
-                        console.log("Không có data");
+                        alert("Không có data");
                         this.listPatient=[]
                     }
                     else {
@@ -242,7 +249,7 @@ export default {
 },
         seeMore(index) {
            
-            this.$router.push(`/patient?id=${index}`)
+            window.open(`/patient?id=${index}`)
         },
         getTime(){
           time=this.time

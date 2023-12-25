@@ -15,7 +15,6 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 import nuxt_plugin_plugin_41ad4133 from 'nuxt_plugin_plugin_41ad4133' // Source: .\\components\\plugin.js (mode: 'all')
 import nuxt_plugin_badgeplugin719fd204_2d51173a from 'nuxt_plugin_badgeplugin719fd204_2d51173a' // Source: .\\badge.plugin.719fd204.js (mode: 'all')
 import nuxt_plugin_tooltipplugin9f0dcac4_b9c288e8 from 'nuxt_plugin_tooltipplugin9f0dcac4_b9c288e8' // Source: .\\tooltip.plugin.9f0dcac4.js (mode: 'all')
-import nuxt_plugin_dividerplugin4ea8fa34_27d62f7c from 'nuxt_plugin_dividerplugin4ea8fa34_27d62f7c' // Source: .\\divider.plugin.4ea8fa34.js (mode: 'all')
 import nuxt_plugin_calendarpluginb036005a_2152f1da from 'nuxt_plugin_calendarpluginb036005a_2152f1da' // Source: .\\calendar.plugin.b036005a.js (mode: 'all')
 import nuxt_plugin_dialogplugin480d46c6_7b0e3cc0 from 'nuxt_plugin_dialogplugin480d46c6_7b0e3cc0' // Source: .\\dialog.plugin.480d46c6.js (mode: 'all')
 import nuxt_plugin_columnplugin2f8c792b_37800b64 from 'nuxt_plugin_columnplugin2f8c792b_37800b64' // Source: .\\column.plugin.2f8c792b.js (mode: 'all')
@@ -202,10 +201,6 @@ async function createApp(ssrContext, config = {}) {
 
   if (typeof nuxt_plugin_tooltipplugin9f0dcac4_b9c288e8 === 'function') {
     await nuxt_plugin_tooltipplugin9f0dcac4_b9c288e8(app.context, inject)
-  }
-
-  if (typeof nuxt_plugin_dividerplugin4ea8fa34_27d62f7c === 'function') {
-    await nuxt_plugin_dividerplugin4ea8fa34_27d62f7c(app.context, inject)
   }
 
   if (typeof nuxt_plugin_calendarpluginb036005a_2152f1da === 'function') {

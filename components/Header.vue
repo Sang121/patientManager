@@ -12,6 +12,7 @@
     display: flex;
     align-items: center;
     padding: 10px;
+    border-radius: 10px;
     justify-content: space-between;
     padding-right: 20px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);

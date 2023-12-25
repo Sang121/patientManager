@@ -14,77 +14,74 @@
 
       <div class="modal-body" >
     <form @submit.prevent="addPatient" class="formAddUser " method="POST">
-    <div class="form-group">
+  
       <label for="fullName">Họ và tên</label>
       <input type="text" class="form-control" id="fullName" v-model="patient.hovaten"  required>
-    </div>  
-    <div class="form-group">
+   
       <label for="namsinh">Năm sinh</label>
 
       <input type="number" class="form-control" id="namsinh"  v-model="patient.namsinh" required> 
-    </div>
 
-    <div class="form-group">
-      <label for="gender">Giới tính</label>
 
-      <input type="text" class="form-control" id="gender" v-model="patient.gioitinh" required>
+<div> 
+   
+      <section>
+        <label for="gioitinh"> Giới tính</label>
+        <input type="radio" v-model="patient.gioitinh" value="nam" >Nam
+      <input type="radio" v-model="patient.gioitinh" value="nữ"   > Nữ
+      </section>
 
-    </div>
+  </div>
 
-    <div class="form-group">
+
       <label for="address">Địa chỉ</label>
 
       <input type="text" class="form-control" id="address" v-model="patient.diachi" required>
-    </div>
-    <div class="form-group">
+    
+   
       <label for="nghenghiep">Nghề nghiệp</label>
       <input type="text" class="form-control"  v-model="patient.nghenghiep" required>
-    </div>
-    <div class="form-group">
+
+    <br/>
+
       <label for="socon">Số con</label>
       <input type="number" class="form-control" v-model="patient.socon" required>
-    </div>
-    <div class="form-group">
+    
       <label for="chieucao">Chiều cao</label>
       <input type="number" class="form-control" v-model="patient.chieucao" required>
-    </div>
-    <div class="form-group">
+    
       <label for="cannang">Cân nặng</label>
       <input type="number" class="form-control" v-model="patient.cannang" required>
-    </div>
-    <div class="form-group">
+   
       <label for="tiensu">Tiểu sử</label>
       <input type="text" class="form-control" v-model="patient.tiensu" required>
-    </div>
-    <div class="form-group">
+ 
+ 
       <label for="lamsang">Lâm sàng </label>
       <input type="text" class="form-control" v-model="patient.lamsang" required>
-    </div>
-    <div class="form-group">
+
+    <br/>
+   
       <label for="mach">Mạch</label>
       <input type="number" class="form-control" v-model="patient.mach" required>
-    </div>
-    <div class="form-group">
+   
       <label for="nhietdo">Nhiệt độ</label>
       <input type="number" class="form-control" v-model="patient.nhietdo" required>
-    </div>
-    <div class="form-group">
+ 
+    <br/>
+   
       <label for="mota">Mô tả</label>
       <input type="text" class="form-control" v-model="patient.mota" required>
-    </div>
-    <div class="form-group">
+   
       <label for="chuandoan">Chẩn đoán</label>
       <input type="text" class="form-control" v-model="patient.chandoan" required>
+    
+    <br/>
 
-    </div>
-    <div class="form-group">
       <label for="dieutri">Cách điều trị</label>
       <input type="text" class="form-control" v-model="patient.dieutri" required>
-
-    </div>
+ 
     <button type="submit" class="btn btn-primary add" >Thêm</button>
-
-
   </form>
 </div>
         </div>
@@ -121,6 +118,7 @@ input {
   justify-content: space-between;
 }
 .modal-content {
+  
   border-radius: 10px;
   background-color: #fefefe;
   margin: 10% auto;
@@ -134,6 +132,7 @@ input {
 }
 
 .formAddUser {
+
   margin-left: 20%;
   width: 60%;
 }
@@ -231,7 +230,7 @@ methods:{
   "gioitinh": this.patient.gioitinh,
   "nghenghiep": this.patient.nghenghiep,
   "ngaytao": today.toISOString(),
-  "ngayketthuc": "2023-12-12T03:24:48.462Z",
+  "ngayketthuc":  today.toISOString(),
   "medicalRecord": {
     "id": 0,
     "benhnhan_id": 0,
@@ -262,7 +261,7 @@ methods:{
       "gioitinh": this.patient.gioitinh,
       "nghenghiep":this.patient.nghenghiep,
       "ngaytao":  today.toISOString(),
-      "ngayketthuc": "2023-12-12T03:24:48.462Z",
+      "ngayketthuc": today.toISOString(),
       "medicalRecords": [
 
       ]
