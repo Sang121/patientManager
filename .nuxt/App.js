@@ -20,6 +20,12 @@ import '..\\node_modules\\primevue\\resources\\primevue.min.css'
 
 import '..\\node_modules\\primeicons\\primeicons.css'
 
+import '..\\node_modules\\primevue\\resources\\themes\\md-light-indigo\\theme.css'
+
+import '..\\node_modules\\primevue\\resources\\primevue.min.css'
+
+import '..\\node_modules\\primeicons\\primeicons.css'
+
 import _6f6c098b from './layouts/default.vue'
 
 const layouts = { "_default": sanitizeComponent(_6f6c098b) }

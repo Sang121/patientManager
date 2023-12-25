@@ -49,7 +49,15 @@ export default {
     'primevue/nuxt',
     // https://go.nuxtjs.dev/axios
      '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
+    [
+      'primevue/nuxt', {
+          theme: 'md-light-indigo',
+          ripple: true,
+          components: ['InputText','Button','DataTable','Column','Dialog','Calendar','Divider'],
+          directives: ['Tooltip','Badge']
+      }
+  ]
   ],
   axios: {
     baseURL: 'http://192.168.1.53:9098',
