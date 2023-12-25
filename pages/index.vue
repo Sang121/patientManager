@@ -1,7 +1,7 @@
 <template>
-    
+    <div><Header /> <br>
     <div class="container"> 
-        <Header /> <br>
+    
     <div class="listUser"> 
         <div class="addUser">
         <Button icon="pi pi-user"  @click="addBtn()" label=" Thêm bệnh nhân"/> 
@@ -51,12 +51,12 @@
 <!-- Form add patient -->
     <addPatient/>
 </div>
+</div>
 </template>
 <style>
 .container {
   padding: 5px;
     height: 1000px;
-    background-color: #f5f5f5;
     display: flex;
     flex-direction: column;
   }

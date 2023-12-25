@@ -23,17 +23,18 @@
       <input type="number" class="form-control" id="namsinh"  v-model="patient.namsinh" required> 
 
 
-<div> 
+
    
-      <section>
-        <label for="gioitinh"> Giới tính</label>
-        <input type="radio" v-model="patient.gioitinh" value="nam" >Nam
-      <input type="radio" v-model="patient.gioitinh" value="nữ"   > Nữ
-      </section>
+        <label for="gender">Giới tính</label><br/>
 
-  </div>
+      <select  v-model="patient.gioitinh" name="gioitinh" id="gioitinh" >
+        <option value="" disabled selected>Select your Gender</option>
 
-
+        <option value="Nam">Nam</option>
+        <option value="Nữ">Nữ</option>
+        <option value="Khác">Khác</option>
+      </select>
+<br/>
       <label for="address">Địa chỉ</label>
 
       <input type="text" class="form-control" id="address" v-model="patient.diachi" required>
@@ -121,7 +122,9 @@ input {
   
   border-radius: 10px;
   background-color: #fefefe;
-  margin: 10%;
+
+  margin: auto;
+  margin-top: 10%;
   padding: 20px;
   border: 1px solid #888;
   width:35%;

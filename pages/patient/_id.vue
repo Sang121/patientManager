@@ -105,7 +105,15 @@
          
             <td><input type="text" v-model=" patient.hovaten " name="hovaten">  </td>
             <td><input type="number" v-model=" patient.namsinh " name="tuoi">  </td>
-            <td><input type="text" v-model=" patient.gioitinh " name="gioitinh">  </td>
+        
+            <td> <select style="margin: auto;"  v-model="patient.gioitinh" name="gioitinh" id="gioitinh">
+              <option value="" disabled selected>Select your Gender</option>
+
+              <option value="Nam">Nam</option>
+              <option value="Nữ">Nữ</option>
+              <option value="Khác">Khác</option>
+            </select>
+          </td>
             <td><input type="text" v-model=" patient.diachi " name="diachi">  </td>
           </tr>
           <tr> 
