@@ -34,15 +34,7 @@
                       <Button id="btn" @click="seeMore(  slotProps.data.id)"  icon="pi pi-eye" label="Xem" />
                     </template>
 
-                  </Column>
-                
-
-                  
-                    <template #body="slotProps">
-
-                      {{slotProps.data  }}
-                    </template>
-                
+                  </Column> 
             </DataTable>
 
     </div>
@@ -52,20 +44,32 @@
 <!-- Form add patient -->
     <addPatient/>
 </div>
+    <div class="footer"> 
+      <hr>
+      <Footer />
+    </div>
 </div>
 </template>
 <style>
 .container {
   padding: 5px;
-    height: 1000px;
+ 
     display: flex;
     flex-direction: column;
   }
-
-  .listUser {
-
+.footer{
+  display: flex;
+align-items: center;
+justify-content: center;
+margin-top: 15%;
+flex-direction: column;
+border-top: 1px solid black;
+background-color: white;
+width: 100%;
+}
+.listUser {
     display: flex;
-    padding: 10px;
+    padding: 10px;  
     background-color: white;
     justify-content: center;
     align-content: center;

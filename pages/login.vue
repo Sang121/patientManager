@@ -1,22 +1,31 @@
 <template>
   <div class="container">
-    <h2><a href="/" class="logo">Quản lý bệnh nhân</a></h2><br/>
-    <div class="login">
-      <form action="#" method="POST" @submit.prevent="loginUser">
-        <div class="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5">
-        <div class="flex flex-wrap justify-content-center align-items-center gap-2">
-            <label class="w-6rem">Username</label>
-            <input id="username"  v-model="user.username" type="text" class="w-12rem" />
-        </div>
-        <div class="flex flex-wrap justify-content-center align-items-center gap-2">
-            <label class="w-6rem">Password</label>
-            <input id="password" v-model="user.password" type="password" class="w-12rem" />
-        </div>
-        <Button label="Login" icon="pi pi-user" type="submit" class="w-10rem mx-auto"/>
+    <a href="/"><img class="logo"  src="../store/logo.svg" alt=""> </a>
+    <div class="main_content" >
+     
+      </div>
+        <div class="login"> 
+        <form action="#" method="POST" @submit.prevent="loginUser">
+          <div class="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5">
+          <div class="flex flex-wrap justify-content-center align-items-center gap-2">
+              <label class="w-6rem">Username</label>
+              <input id="username"  v-model="user.username" type="text" class="w-12rem" />
+          </div>
+          <div class="flex flex-wrap justify-content-center align-items-center gap-2">
+              <label class="w-6rem">Password</label>
+              <input id="password" v-model="user.password" type="password" class="w-12rem" />
+          </div>
+          <Button label="Login" icon="pi pi-user" type="submit" class="w-10rem mx-auto"/>
+      </div>
+      
+        </form>
+        <div class="fgPass flex flex-wrap  gap-3 "> 
+          <a href=""><p>Quên mật khẩu</p></a>
+          <a href=""><p>Bạn chưa có tài khoản?</p></a>
+      </div>
+      </div>
     </div>
-      </form>
-    </div>
-  </div>
+
 
 </template>
 <style>
@@ -24,29 +33,42 @@
   font-family: 'Arial', sans-serif;
   
 }
+.main_content{
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
+  margin-left: 15%;
+
+}
+.intro{
+  width: 30%;
+  align-items: center;
+
+}
 
 .login {
-
-  justify-content: center;
-  align-items: center;
-  margin-left: 20%;
-  margin-top: 10%;
+  margin-left: 35%;
+  width: 70%;
 }
 
 
 
+
 .logo {
-  position: fixed;
-  margin: 20px;
-  box-shadow: 0px 2px 8px rgba(99, 99, 99, 0.2);
+  width: 200px;
   padding: 15px;
   border-radius: 10px;
-  background-color: #f4f4f4;
 }
 
 a {
   text-decoration: none;
   color: black;
+}
+.fgPass{
+  display: flex;
+  flex-direction: row;
+  margin-left: 10%;
+  margin-top: 0;
 }
 
 

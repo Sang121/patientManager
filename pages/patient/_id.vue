@@ -2,7 +2,8 @@
   <div class="container"> 
     <Header /> <hr/>  
         <div class="main">
- <button @click="getExam()">In phiếu khám </button>
+ <!-- <button @click="getExam()">In phiếu khám </button> -->
+ <h2>Thông tin cá nhân</h2>
       <table>
         <tr> 
 
@@ -36,7 +37,7 @@
 
 
       </table>
-      <h3>MedicalRecord</h3>
+      <h2>MedicalRecord</h2>
       <table class="records"> 
         <tr>
           <th>Chiều cao(cm):</th>
@@ -92,13 +93,14 @@
             </button> 
           <div class="modal-header">
             <form @submit.prevent="updatePatient"  method="POST">
-            <table id="seeMore"  border="1">
+            <table id="seeMore" >
           <tr>
       
               <th>Họ và tên</th>
               <th>Năm sinh</th>
               <th>Giới tính</th>
           <th> Địa chỉ </th>
+          <th>Nghề Nghiệp</th>
             </tr>
            
             <tr >
@@ -115,46 +117,42 @@
             </select>
           </td>
             <td><input type="text" v-model=" patient.diachi " name="diachi">  </td>
+            <td><input type="text" v-model=" patient.nghenghiep " name="nghenghiep">  </td>
+
           </tr>
           <tr> 
 
-               <th>Nghề Nghiệp</th>
+               
               <th>Số con</th>
               <th>Cân nặng</th>
               <th>Chiều cao(cm)</th>
+              <th>Lâm sàng</th>
+              <th>Mạch</th>
             </tr>
             <tr> 
            
-            <td><input type="text" v-model=" patient.nghenghiep " name="nghenghiep">  </td>
             <td><input type="number" v-model=" patient.socon " name="socon">  </td>
             <td><input type="text" v-model="medicalRecord.cannang" name="cannang">  </td>
             <td><input type="text" v-model="medicalRecord.chieucao" name="chieucao">  </td>
-           
+            <td><input type="text" v-model=" medicalRecord.lamsang " name="lamsang">  </td>
+            <td><input type="text" v-model="medicalRecord.mach " name="mach">  </td>
         </tr>
         <tr> 
           <th>Tiền sử</th>
-              <th>Lâm sàng</th>
-              <th>Mạch</th>
+             
                <th>Mô tả</th>
-           
-          </tr> 
-             <tr >  
-              <td><input type="text" v-model=" medicalRecord.tiensu " name="tieusu">  </td>  
-            <td><input type="text" v-model=" medicalRecord.lamsang " name="lamsang">  </td>
-            <td><input type="text" v-model="medicalRecord.mach " name="mach">  </td>
-            <td><input type="text" v-model=" medicalRecord.mota " name="mota">  </td>
-          
-        </tr>
-        <tr> 
-          <th>Chuẩn đoán</th>
-          <th>Điều trị</th></tr>
-
-      <tr>  
-        <td><input type="text" v-model=" medicalRecord.chuandoan" name="chuandoan">  </td>
-        <td><input type="text" v-model=" medicalRecord.dieutri" name="dieutri">  </td>
+               <th>Chuẩn đoán</th>
+            <th>Điều trị</th>
+          </tr>
+       
+          <tr >  
+            <td><textarea rows="7" type="text" v-model=" medicalRecord.tiensu " name="tieusu"></textarea> </td>  
+            <td><textarea rows="7"  type="text" v-model=" medicalRecord.mota " name="mota"></textarea>  </td>
+            <td><textarea rows="7" type="text" v-model=" medicalRecord.chuandoan" name="chuandoan"></textarea>  </td>
+            <td><textarea rows="7" type="text" v-model=" medicalRecord.dieutri" name="dieutri"></textarea>  </td>
         </tr>
     </table>
-    <Button type="submit" icon="pi pi-save"  label="Lưu" />
+    <Button type="submit" icon="pi pi-save" class="save_btn"  label="Lưu" />
   </form>
   </div>
 </div>
@@ -167,7 +165,6 @@
 <style>
   /* Container Styles */
   .container {
-
     margin: 0 ;
     padding: 5px;
     background-color: #f8f8f8;
@@ -178,8 +175,6 @@
   /* Header Styles */
   .container hr {
     margin-top: 10px;
-    border: none;
-    border-top: 2px solid #007bff;
   }
 
   /* Main Content Styles */
@@ -226,12 +221,23 @@
     }
   } */
   form{
-    width: 80%;
+    width: 100%;
   }
   .modal-content {
 
     width: 80%;
+    margin-top: 7%;
   }
+  .save_btn{
+    margin-top: 5px;
+    margin-left: 40%;
+  }
+  textarea:focus {
+   outline: none;
+}
+  input:focus {
+   outline: none;
+}
 </style>
 <script>
 import axios from "axios";
