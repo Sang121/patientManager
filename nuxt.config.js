@@ -54,7 +54,7 @@ export default {
       'primevue/nuxt', {
           theme: 'md-light-indigo',
           ripple: true,
-          components: ['InputText','Button','DataTable','Column','Dialog','Calendar','Message'],
+          components: ['InputText','Button','DataTable','Column','Dialog','Calendar'],
           directives: ['Tooltip','Badge']
       }
   ]

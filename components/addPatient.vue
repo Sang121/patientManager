@@ -13,8 +13,10 @@
           </div>
 
       <div class="modal-body" >
-    <form @submit.prevent="addPatient" class="formAddUser " method="POST">
-  
+    <form @submit.prevent="addPatient"  method="POST">
+  <div class=" formAddUser" > 
+    <div class="inf item"> 
+
       <label for="fullName">Họ và tên</label>
       <input type="text" class="form-control" id="fullName" v-model="patient.hovaten"  required>
    
@@ -26,14 +28,8 @@
 
    
         <label for="gender">Giới tính</label><br/>
+        <input type="text" class="form-control" id="gioitinh" v-model="patient.gioitinh" required>
 
-      <select  v-model="patient.gioitinh" name="gioitinh" id="gioitinh" >
-        <option value="" disabled selected>Select your Gender</option>
-
-        <option value="Nam">Nam</option>
-        <option value="Nữ">Nữ</option>
-        <option value="Khác">Khác</option>
-      </select>
 <br/>
       <label for="address">Địa chỉ</label>
 
@@ -47,7 +43,8 @@
 
       <label for="socon">Số con</label>
       <input type="number" class="form-control" v-model="patient.socon" required>
-    
+    </div> 
+    <div class="record item">  
       <label for="chieucao">Chiều cao</label>
       <input type="number" class="form-control" v-model="patient.chieucao" required>
     
@@ -57,12 +54,9 @@
       <label for="tiensu">Tiểu sử</label>
       <input type="text" class="form-control" v-model="patient.tiensu" required>
  
- 
       <label for="lamsang">Lâm sàng </label>
       <input type="text" class="form-control" v-model="patient.lamsang" required>
 
-    <br/>
-   
       <label for="mach">Mạch</label>
       <input type="number" class="form-control" v-model="patient.mach" required>
    
@@ -70,17 +64,19 @@
       <input type="number" class="form-control" v-model="patient.nhietdo" required>
  
     <br/>
-   
+  </div>
+</div>
       <label for="mota">Mô tả</label>
-      <input type="text" class="form-control" v-model="patient.mota" required>
+      <textarea type="text" class="form-control" v-model="patient.mota" required></textarea>
    
       <label for="chuandoan">Chẩn đoán</label>
-      <input type="text" class="form-control" v-model="patient.chandoan" required>
+      <textarea type="text" class="form-control" v-model="patient.chandoan" required></textarea>
     
     <br/>
 
       <label for="dieutri">Cách điều trị</label>
-      <input type="text" class="form-control" v-model="patient.dieutri" required>
+      <textarea type="text" class="form-control" v-model="patient.dieutri" required> </textarea>
+ 
  
     <button type="submit" class="btn btn-primary add" >Thêm</button>
   </form>
@@ -119,27 +115,30 @@ input {
   justify-content: space-between;
 }
 .modal-content {
-  
   border-radius: 10px;
   background-color: #fefefe;
-
   margin: auto;
   margin-top: 10%;
   padding: 20px;
   border: 1px solid #888;
-  width:35%;
+  width:45%;
 }
-
 .modal-title {
   font-size: 25px;
 }
-
-.formAddUser {
-
-  margin-left: 20%;
-  width: 60%;
+.modal-body{
+  margin-left: 5%;
+  width: 80%;
 }
 
+.formAddUser {
+  display:flex;
+  flex-direction: row;
+}
+.item{
+  margin: 10px;
+  width:45%
+}
 .addUser {
   margin-bottom: 10px;
   padding: 8px;
