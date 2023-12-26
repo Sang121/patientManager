@@ -1,5 +1,5 @@
 import Vue from 'vue'
-
+import Vuex from 'vuex'
 import Meta from 'vue-meta'
 import ClientOnly from 'vue-client-only'
 import NoSsr from 'vue-no-ssr'
@@ -9,12 +9,14 @@ import NuxtError from './components/nuxt-error.vue'
 import Nuxt from './components/nuxt.js'
 import App from './App.js'
 import { setContext, getLocation, getRouteData, normalizeError } from './utils'
+import { createStore } from './store.js'
 
 /* Plugins */
 
 import nuxt_plugin_plugin_41ad4133 from 'nuxt_plugin_plugin_41ad4133' // Source: .\\components\\plugin.js (mode: 'all')
 import nuxt_plugin_badgeplugin719fd204_2d51173a from 'nuxt_plugin_badgeplugin719fd204_2d51173a' // Source: .\\badge.plugin.719fd204.js (mode: 'all')
 import nuxt_plugin_tooltipplugin9f0dcac4_b9c288e8 from 'nuxt_plugin_tooltipplugin9f0dcac4_b9c288e8' // Source: .\\tooltip.plugin.9f0dcac4.js (mode: 'all')
+import nuxt_plugin_messageplugin17af15a2_6aa93d78 from 'nuxt_plugin_messageplugin17af15a2_6aa93d78' // Source: .\\message.plugin.17af15a2.js (mode: 'all')
 import nuxt_plugin_calendarpluginb036005a_2152f1da from 'nuxt_plugin_calendarpluginb036005a_2152f1da' // Source: .\\calendar.plugin.b036005a.js (mode: 'all')
 import nuxt_plugin_dialogplugin480d46c6_7b0e3cc0 from 'nuxt_plugin_dialogplugin480d46c6_7b0e3cc0' // Source: .\\dialog.plugin.480d46c6.js (mode: 'all')
 import nuxt_plugin_columnplugin2f8c792b_37800b64 from 'nuxt_plugin_columnplugin2f8c792b_37800b64' // Source: .\\column.plugin.2f8c792b.js (mode: 'all')
@@ -67,9 +69,23 @@ Vue.use(Meta, {"keyName":"head","attribute":"data-n-head","ssrAttribute":"data-n
 
 const defaultTransition = {"name":"page","mode":"out-in","appear":true,"appearClass":"appear","appearActiveClass":"appear-active","appearToClass":"appear-to"}
 
+const originalRegisterModule = Vuex.Store.prototype.registerModule
+
+function registerModule (path, rawModule, options = {}) {
+  const preserveState = process.client && (
+    Array.isArray(path)
+      ? !!path.reduce((namespacedState, path) => namespacedState && namespacedState[path], this.state)
+      : path in this.state
+  )
+  return originalRegisterModule.call(this, path, rawModule, { preserveState, ...options })
+}
+
 async function createApp(ssrContext, config = {}) {
-  const store = null
+  const store = createStore(ssrContext)
   const router = await createRouter(ssrContext, config, { store })
+
+  // Add this.$router into store actions/mutations
+  store.$router = router
 
   // Create Root instance
 
@@ -78,6 +94,7 @@ async function createApp(ssrContext, config = {}) {
   const app = {
     head: {"title":"UserManager","htmlAttrs":{"lang":"en"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""},{"name":"format-detection","content":"telephone=no"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"style":[],"script":[]},
 
+    store,
     router,
     nuxt: {
       defaultTransition,
@@ -122,6 +139,9 @@ async function createApp(ssrContext, config = {}) {
     ...App
   }
 
+  // Make app available into store via this.app
+  store.app = app
+
   const next = ssrContext ? ssrContext.next : location => app.router.push(location)
   // Resolve route
   let route
@@ -134,6 +154,7 @@ async function createApp(ssrContext, config = {}) {
 
   // Set context to app.context
   await setContext(app, {
+    store,
     route,
     next,
     error: app.nuxt.error.bind(app),
@@ -161,6 +182,9 @@ async function createApp(ssrContext, config = {}) {
       app.context[key] = value
     }
 
+    // Add into store
+    store[key] = app[key]
+
     // Check if plugin not already installed
     const installKey = '__nuxt_' + key + '_installed__'
     if (Vue[installKey]) {
@@ -182,6 +206,13 @@ async function createApp(ssrContext, config = {}) {
   // Inject runtime config as $config
   inject('config', config)
 
+  if (process.client) {
+    // Replace store state before plugins execution
+    if (window.__NUXT__ && window.__NUXT__.state) {
+      store.replaceState(window.__NUXT__.state)
+    }
+  }
+
   // Add enablePreview(previewData = {}) in context for plugins
   if (process.static && process.client) {
     app.context.enablePreview = function (previewData = {}) {
@@ -201,6 +232,10 @@ async function createApp(ssrContext, config = {}) {
 
   if (typeof nuxt_plugin_tooltipplugin9f0dcac4_b9c288e8 === 'function') {
     await nuxt_plugin_tooltipplugin9f0dcac4_b9c288e8(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_messageplugin17af15a2_6aa93d78 === 'function') {
+    await nuxt_plugin_messageplugin17af15a2_6aa93d78(app.context, inject)
   }
 
   if (typeof nuxt_plugin_calendarpluginb036005a_2152f1da === 'function') {
@@ -283,6 +318,7 @@ async function createApp(ssrContext, config = {}) {
   })
 
   return {
+    store,
     app,
     router
   }

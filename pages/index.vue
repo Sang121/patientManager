@@ -9,42 +9,43 @@
     </div>
     <div>
     <date-picker v-model="time" valueType="format">Chọn ngày</date-picker>
-
-    <Button icon="pi pi-download" @click="getPatient(time)" label="Lấy thông tin "/> 
-
   </div>
+  
     <!-- Danh sách bệnh nhân -->
-    <div class="card">
-      
+
+    <div class="card" id="null list" >
+     
+       
         <DataTable :value="listPatient"  paginator :rows="5" :rowsPerPageOptions="[5, 10, 20]" 
-                paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-                currentPageReportTemplate="{first} to {last} of {totalRecords}">
+                    paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+                    currentPageReportTemplate="{first} to {last} of {totalRecords}">
 
-              <Column field="id" header="ID"   style="width:5%"></Column>
+                  <Column field="id" header="ID"   style="width:5%"></Column>
+                  <Column field="stt"    style="width:5%"></Column>
 
-              <Column field="hovaten" header="Họ và tên" style="width: 25%"></Column>
-              <Column field="namsinh" header="Năm sinh"  style="width: 5%"></Column>
-              <Column field="gioitinh" header="Giới tính" style="width: 15%"></Column>
-              <Column field="diachi" header="Địa chỉ" style="width: 25%"></Column>
-              <Column field="nghenghiep" header="Nghề nghiệp" style="width: 25%"></Column>
+                  <Column field="hovaten" header="Họ và tên" style="width: 25%"></Column>
+                  <Column field="namsinh" header="Năm sinh"  style="width: 5%"></Column>
+                  <Column field="gioitinh" header="Giới tính" style="width: 15%"></Column>
+                  <Column field="diachi" header="Địa chỉ" style="width: 25%"></Column>
+                  <Column field="nghenghiep" header="Nghề nghiệp" style="width: 25%"></Column>
 
-              <Column  header="Xem chi tiết" style="width: 20%"> 
-                <template #body="slotProps">
-                  <Button id="btn" @click="seeMore(  slotProps.data.id)"  icon="pi pi-eye" label="Xem" />
-                </template>
+                  <Column  header="Xem chi tiết" style="width: 20%"> 
+                    <template #body="slotProps">
+                      <Button id="btn" @click="seeMore(  slotProps.data.id)"  icon="pi pi-eye" label="Xem" />
+                    </template>
 
-              </Column>
-            
+                  </Column>
+                
 
-              
-                <template #body="slotProps">
+                  
+                    <template #body="slotProps">
 
-                  {{slotProps.data  }}
-                </template>
-             
-        </DataTable>
+                      {{slotProps.data  }}
+                    </template>
+                
+            </DataTable>
+
     </div>
-    
 
     </div>
 
@@ -176,21 +177,28 @@ import axios from "axios";
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
 import Button from 'primevue/button';
+import Message from 'primevue/message';
+import Column from 'primevue/column';
+import DataTable from 'primevue/DataTable';
 
 const base_URL = "http://192.168.1.53:9098"
 const access_token= localStorage.getItem("auth._token.local"); //get bearer token
-var today= new Date()                                                      
+var today= new Date() 
 export default {
     data() {
         return {
             listPatient: [],
             patient: {},
-            time: null,
-       
+            time:this.time,
         };
     },
 
     components: { DatePicker,Button },
+    watch: {
+    time(newValue, oldValue) {
+      this.getPatient(newValue);
+    },
+  },
   
     methods: {
       async getPatient(time) {
@@ -203,19 +211,15 @@ export default {
                     .then((response) => {
 
                     if (response.data.total_count == 0) {
-                       
-                        this.listPatient=[]
-                        alert("Không có data");
+                     this.listPatient=response.data.data
+
+
                     }
                     else {
                      
                         this.listPatient = response.data.data;
-      
 
                         console.log("Lấy data thành công",response.data);
-                       
-
-
 
                     }
                 });
@@ -225,13 +229,18 @@ export default {
             }
 
 },
+        
+
         seeMore(index) {
            
             window.open(`/patient?id=${index}`)
         },
-        getTime(){
-          time=this.time
-          
+        // getTime(){
+        //   console.log("times:", this.time)
+        // },
+        handleTimeChange(){
+            var time = this.time
+            this.getPatient(time)
         },
         addBtn() {
           
@@ -240,32 +249,16 @@ export default {
                 console.log(today.toISOString() );
             },
            
-        // deletePatient(id) {
-        //     try {
-        //         axios.delete(`${base_URL}/Patient`, { id }, { headers: {
-        //                 Authorization: `Bearer ${access_token}`
-        //             }
-        //         })
-        //             .then((response) => {
-        //             console.log(response);
-        //         });
-        //     }
-        //     catch (e) {
-        //         alert("Chức năng đang phát triển");
-        //         console.error("lỗi", e);
-        //     }
-        // },
-      
+
         
         
     },
-    
      mounted(){
-      console.log(this.time)
+ 
       if(this.time==null){
        this.time = today.toISOString()
-       this.getPatient(today.toISOString())
       }
+     
      },
 
     Middleware: 'auth',

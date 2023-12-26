@@ -107,7 +107,7 @@
             <td><input type="number" v-model=" patient.namsinh " name="tuoi">  </td>
         
             <td> <select style="margin: auto;"  v-model="patient.gioitinh" name="gioitinh" id="gioitinh">
-              <option value="" disabled selected>Select your Gender</option>
+             
 
               <option value="Nam">Nam</option>
               <option value="Nữ">Nữ</option>
@@ -226,7 +226,7 @@
     }
   } */
   form{
-    width: 100%;
+    width: 80%;
   }
   .modal-content {
 

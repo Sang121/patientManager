@@ -1,9 +1,15 @@
 <template>
    <div class="header">
-     <h2 class="logo"><a href="/ ">Quản lý bệnh nhân</a></h2>
-     <!-- <button class="logOutBtn "  id="btn" @click="logOut"> Đăng xuất</button> -->
-     <Button icon="pi pi-sign-out"  id="btn" @click="logOut" label="Đăng xuất" />
+     <a href="/"><img class="logo"  src="../store/logo.svg" alt=""> </a>
+      <div class="right">
+        <div class="contact"> 
+          <a href="https://www.facebook.com/Libra245"  ><i class="pi pi-facebook"></i></a>
 
+          <a href="/"  ><i class="pi pi-phone"></i></a>
+
+      </div>
+      <Button icon="pi pi-sign-out"  id="btn" @click="logOut" label="Đăng xuất" />
+    </div>
    </div>
 </template>
  <style>
@@ -19,11 +25,29 @@
     
   }
   .logo{
-  
+    width: 150px;
   }
   a{
     text-decoration: none;
   color: black;}
+  .right{
+    display: flex;
+    flex-direction: row;
+    width: 17%;
+    justify-content: space-between;
+
+  }
+  .contact{
+    display: flex;
+align-items: center;
+justify-content: center;
+  }
+.contact i{
+  font-size: 25px;
+  margin-right: 10px;
+  bottom: 0;
+
+}
 </style>
 <script>
 import Button from 'primevue/button';
