@@ -8,7 +8,7 @@
           <a href="/"  ><i class="pi pi-phone"></i></a>
 
       </div>
-      <Button icon="pi pi-sign-out"  id="btn" @click="logOut" label="Đăng xuất" />
+      <Button class="logOut_btn" icon="pi pi-sign-out"  id="btn" @click="logOut" label="Đăng xuất" />
     </div>
    </div>
 </template>
@@ -25,7 +25,7 @@
     
   }
   .logo{
-    width: 150px;
+    width: 200px;
   }
   a{
     text-decoration: none;
@@ -33,7 +33,7 @@
   .right{
     display: flex;
     flex-direction: row;
-    width: 17%;
+    width: 15%;
     justify-content: space-between;
 
   }
@@ -45,8 +45,9 @@ justify-content: center;
 .contact i{
   font-size: 25px;
   margin-right: 10px;
-  bottom: 0;
-
+}
+.logOut_btn{
+  font-size: smaller;
 }
 </style>
 <script>

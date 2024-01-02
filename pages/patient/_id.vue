@@ -41,12 +41,12 @@
       <table class="records"> 
         <tr>
           <th>Chiều cao(cm):</th>
-          <td>{{ medicalRecord.chieucao }}</td>
+          <td>{{ medicalRecord.chieucao }} cm</td>
 
         </tr>
         <tr>
           <th>Cân nặng:</th>
-          <td>{{ medicalRecord.cannang }}</td>
+          <td>{{ medicalRecord.cannang }} kg</td>
 
         </tr>
         <tr>
