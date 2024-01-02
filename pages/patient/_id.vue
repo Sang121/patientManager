@@ -221,11 +221,28 @@
   form{
     width: 100%;
   }
-  .modal-content {
 
-    width: 80%;
-    margin-top: 7%;
-  }
+  .modal-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.modal-content {
+  border-radius: 10px;
+  background-color: #fefefe;
+  margin: auto;
+  margin-top: 7%;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+.modal-title {
+  font-size: 25px;
+}
+.modal-body{
+  margin-left: 5%;
+  width: 80%;
+}
   .save_btn{
     margin-top: 5px;
     margin-left: 40%;
@@ -235,6 +252,27 @@
 }
   input:focus {
    outline: none;
+}
+.modal {
+  position: fixed;
+  justify-content: center;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal.show {
+  display: block;
+}
+.update {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .hide{
   display:none;

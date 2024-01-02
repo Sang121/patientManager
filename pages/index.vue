@@ -151,12 +151,7 @@ input {
   transition: background-color 0.15s;
 }
 
-.update {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+
 
 
 /* @media screen and (max-width: 550px){ 
