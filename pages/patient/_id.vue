@@ -79,9 +79,7 @@
           <th>Điều trị:</th>
           <td>{{ medicalRecord.dieutri }}</td>
 
-        </tr>
-
-      </table>
+        </tr>      </table>
     <Button type="button" icon="pi pi-user-edit"  @click="edit()" label="Sửa thông tin "/>  
 <!-- <updatePatient/> -->
 <div class="update"> 
@@ -93,7 +91,7 @@
             </button> 
           <div class="modal-header">
             <form @submit.prevent="updatePatient"  method="POST">
-            <table id="seeMore" >
+            <table >
           <tr>
       
               <th>Họ và tên</th>
@@ -238,6 +236,9 @@
   input:focus {
    outline: none;
 }
+.hide{
+  display:none;
+}
 </style>
 <script>
 import axios from "axios";
@@ -359,8 +360,8 @@ edit(){
 
 },
 unSee() {
-      const seeMore = document.getElementById('seeMore');
-      seeMore.classList.add('hide'); 
+      const modal = document.getElementById('seeMore');
+      modal.classList.add('hide'); 
     },
 
     },
