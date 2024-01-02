@@ -59,7 +59,7 @@
   }
 .footer{
   
-  
+
 flex-direction: column;
 background-color: white;
 width: 100%;
@@ -178,9 +178,7 @@ import axios from "axios";
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
 import Button from 'primevue/button';
-import Message from 'primevue/message';
-import Column from 'primevue/column';
-import DataTable from 'primevue/DataTable';
+
 
 const base_URL = "http://192.168.1.53:9098"
 const access_token= localStorage.getItem("auth._token.local"); //get bearer token
