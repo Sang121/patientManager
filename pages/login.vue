@@ -144,8 +144,8 @@ user :{
 },
 mounted(){
   console.log("auth",this.$auth)
-},
-auth: false
+console.log("test auth",this.$auth.$state.loggedIn)},
+
 
 }
 </script    >

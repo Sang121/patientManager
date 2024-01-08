@@ -25,10 +25,19 @@
       <input type="number" class="form-control" id="namsinh"  v-model="patient.namsinh" required> 
 
 
+      <label for="gender">Giới tính</label>
+  <select  v-model="patient.gioitinh" name="gioitinh" id="gioitinh">
+    <option value="Nam" disabled>--Chọn giới tính của bạn--</option>
 
+    <option value="Nam">Nam</option>
+    <option value="Nữ">Nữ</option>
+    <option value="Khác">Khác</option>
+
+  </select>
+  <br>
    
-        <label for="gender">Giới tính</label><br/>
-        <input type="text" class="form-control" id="gioitinh" v-model="patient.gioitinh" required>
+        <!-- <label for="gender">Giới tính</label><br/>
+        <input type="text" class="form-control" id="gioitinh" v-model="patient.gioitinh" required> -->
 
 <br/>
       <label for="address">Địa chỉ</label>
