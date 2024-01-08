@@ -60,21 +60,9 @@ export default {
          await this.$auth.logout()
          this.$router.push('/login')
 },
-btn(){
- 
-  const isLoggedIn=localStorage.getItem('isLoggedIn');
-
-   if( !isLoggedIn)
-   {
-      this.$router.push('/login')
-   }
-
-}
 
 },
-mounted() {
-      this.btn();
-    },
+
   name: 'Header',
 }
 </script>

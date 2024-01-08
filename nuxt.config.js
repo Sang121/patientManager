@@ -81,10 +81,9 @@ export default {
         endpoints: {
           login: { url: 'http://192.168.1.53:9098/Auth/login', method: 'post' },
           logout: { url: 'http://192.168.1.53:9098/Auth/logout', method: 'get' },
-          user: { url: 'http://192.168.1.53:9098/Auth/user', method: 'get' },
+          //user: { url: 'http://192.168.1.53:9098/Auth/user', method: 'get' },
           // getPatient: { url: 'http://192.168.1.53:9098/Patient', method: 'get' },
-          // updatePatient: { url: 'http://192.168.1.53:9098/Patient/update', method: 'post' },
-          // addPatient: { url: 'http://192.168.1.53:9098/Patient', method: 'post' }
+         
         },
         
       },
@@ -105,7 +104,7 @@ export default {
     transpile: ['primevue'],
   },
   router: {
-  //  middleware: ['auth']
+   middleware: ['auth']
   },
   
 }

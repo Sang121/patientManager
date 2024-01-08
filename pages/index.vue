@@ -206,8 +206,6 @@ export default {
 
                     if (response.data.total_count == 0) {
                      this.listPatient=response.data.data
-
-
                     }
                     else {
                      
@@ -219,7 +217,7 @@ export default {
                 });
             }
             catch (e) {
-                console.log("Không thể lấy được thông tin bệnh nhân", e.message);
+                console.log("Không thể lấy được thông tin bệnh nhân", e);
             }
 
 },
@@ -240,22 +238,18 @@ export default {
           
                 const modal = document.getElementById('addPatient');
                 modal.classList.remove('hide');
-                console.log(today.toISOString() );
             },
-           
-
-        
-        
+          
     },
      mounted(){
  
       if(this.time==null){
        this.time = today.toISOString()
-      }
-     
+      };
+      console.log("auth",this.$auth);
      },
+     
 
-    Middleware: 'auth',
 }
 
 

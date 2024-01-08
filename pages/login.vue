@@ -132,26 +132,20 @@ user :{
         password: this.user.password,
       })
      this.$auth.setUserToken(res.data.data.rawData)
-     console.log('Đăng nhập thành công');
-   localStorage.setItem('isLoggedIn', true)
-     alert("Đăng nhập thành công")
-    
+     console.log('Đăng nhập thành công');    
      window.location.href ="/" 
     } else {
-      console.log('Đăng nhập thất bại');
-      alert("Đăng nhập thất bại")
-        
-
+      alert("Thông tin đăng nhập không chính xác")
     }
       } catch (err) {
         console.log("error",err)
       }
-    }
-    
+    }   
 },
-
+mounted(){
+  console.log("auth",this.$auth)
+},
 auth: false
-
 
 }
 </script    >

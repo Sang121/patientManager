@@ -43,13 +43,13 @@ padding: 0 5% 0 5% ;
 }
 .address{
     display: flex;
-    flex-direction: row;
-}
+    flex-direction: row;}
 .contacts{
     display: flex;
     flex-direction: column;
     padding: 10px;
 }
+
 .map{
 margin-left: 10px;
 margin-top: 15px;
@@ -59,7 +59,7 @@ margin-top: 15px;
     display: flex;
     flex-direction: row;
     width: 50%;
-    margin-left: 10px;
+    margin-left: 30px;
 }
 .infContact p{
     font-size: 15px;

@@ -311,7 +311,6 @@ methods:{
     unShow() {
         const modal = document.getElementById('addPatient');
         modal.classList.add('hide') 
-            console.log("đã hide");
 
     },
    

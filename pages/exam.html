@@ -1,162 +1,145 @@
-<html lang="vi">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Phiếu khám</title>
-    <link rel="stylesheet" href="/css/simplegrid.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.4.1/paper.css" />
-    <style>
-        @page {
-            size: A5;
+<!DOCTYPE html>
+<html lang="en" data-n-head="%7B%22lang%22:%7B%221%22:%22en%22%7D%7D">
+  <head>
+    <meta data-n-head="1" charset="utf-8" />
+    <meta
+      data-n-head="1"
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <meta
+      data-n-head="1"
+      data-hid="description"
+      name="description"
+      content=""
+    />
+    <meta data-n-head="1" name="format-detection" content="telephone=no" />
+    <title>UserManager</title>
+    <link data-n-head="1" rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="preload" href="/_nuxt/runtime.js" as="script" />
+    <link rel="preload" href="/_nuxt/commons/app.js" as="script" />
+    <link rel="preload" href="/_nuxt/vendors/app.js" as="script" />
+    <link rel="preload" href="/_nuxt/app.js" as="script" />
+  </head>
+  <body>
+    <div id="__nuxt">
+      <style>
+        #nuxt-loading {
+          background: white;
+          visibility: hidden;
+          opacity: 0;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          animation: nuxtLoadingIn 10s ease;
+          -webkit-animation: nuxtLoadingIn 10s ease;
+          animation-fill-mode: forwards;
+          overflow: hidden;
         }
-
-        * {
-            font-family: 'Times New Roman' !important;
+        @keyframes nuxtLoadingIn {
+          0% {
+            visibility: hidden;
+            opacity: 0;
+          }
+          20% {
+            visibility: visible;
+            opacity: 0;
+          }
+          100% {
+            visibility: visible;
+            opacity: 1;
+          }
         }
-
-        #printInner {
-            text-align: center;
-            font-size: 12pt;
-            font-family: 'Times New Roman' !important;
+        @-webkit-keyframes nuxtLoadingIn {
+          0% {
+            visibility: hidden;
+            opacity: 0;
+          }
+          20% {
+            visibility: visible;
+            opacity: 0;
+          }
+          100% {
+            visibility: visible;
+            opacity: 1;
+          }
         }
-
-        #printInner h1,
-        h3,
-        #printInner p {
-            margin: 0;
+        #nuxt-loading > div,
+        #nuxt-loading > div:after {
+          border-radius: 50%;
+          width: 5rem;
+          height: 5rem;
         }
-
-        .mb-1 {
-            margin-bottom: 0.1in;
+        #nuxt-loading > div {
+          font-size: 10px;
+          position: relative;
+          text-indent: -9999em;
+          border: 0.5rem solid #f5f5f5;
+          border-left: 0.5rem solid black;
+          -webkit-transform: translateZ(0);
+          -ms-transform: translateZ(0);
+          transform: translateZ(0);
+          -webkit-animation: nuxtLoading 1.1s infinite linear;
+          animation: nuxtLoading 1.1s infinite linear;
         }
-
-        .title {
-            color: #215868;
+        #nuxt-loading.error > div {
+          border-left: 0.5rem solid #ff4500;
+          animation-duration: 5s;
         }
-
-        img {
-            margin: auto;
-            width: 70mm;
+        @-webkit-keyframes nuxtLoading {
+          0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+          }
+          100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+          }
         }
-    </style>
-</head>
-<!-- Set "A5", "A4" or "A3" for class name -->
-<!-- Set also "landscape" if you need -->
-
-<body class="A5">
-    <!-- Each sheet element should have the class "sheet" -->
-    <!-- "padding-**mm" is optional: you can set 10, 15, 20 or 25 -->
-    <section class="sheet" style="margin-left: auto; margin-right: auto">
-        <!-- Write HTML just like a web page -->
-        <article id="printInner">
-            <h3 style="
-              margin-top: 0.1875in;
-              font-size: 15pt;
-              font-weight: 700;
-              color: red;
-            ">
-                PHÒNG KHÁM CHỮA BỆNH CHUYÊN KHOA TRĨ ĐNT
-            </h3>
-            <p style="
-              margin-top: 0.1875in;
-              font-size: 12pt;
-              font-weight: 700;
-              color: #215868;
-            ">
-                CƠ SỞ 1: SỐ 60 HÀO NAM, HÀ NỘI
-            </p>
-            <p style="
-              margin-top: 0.05in;
-              font-size: 12pt;
-              font-weight: 700;
-              color: #215868;
-            ">
-                PGS.TS.THẦY THUỐC ƯU TÚ ĐỖ NGỌC TẤN
-            </p>
-            <p style="
-              margin-top: 0.05in;
-              font-size: 12pt;
-              font-weight: 700;
-              color: #215868;
-            ">
-                Điện thoại: 024.38519614 - 0913.379699 - 0904.17.27.09
-            </p>
-            <hr width="50%" style="
-              border-style: dotted;
-              border-width: 2pt;
-              border-color: #215868;
-            " />
-            <h1 style="
-              margin-bottom: 0.2in;
-              font-size: 20pt;
-              font-weight: 700;
-              color: red;
-            ">
-                HÌNH ẢNH NỘI SOI
-            </h1>
-            <div class="row mb-1">
-                <div class="col-6">
-                    <div class="col-5 right font-heavy title">Họ và tên</div>
-                    <div class="col-7 left">Nguy&#x1EC5;n Th&#x1ECB; Th&#xF9;y Linh</div>
-                </div>
-                <div class="col-6">
-                    <div class="col-5 right font-heavy title">Tuổi</div>
-                    <div class="col-7 left">26</div>
-                </div>
-            </div>
-            <div class="row mb-1">
-                <div class="col-6">
-                    <div class="col-5 right font-heavy title">Địa chỉ</div>
-                    <div class="col-7 left">Qu&#x1EA3;ng B&#xEC;nh</div>
-                </div>
-                <div class="col-6">
-                    <div class="col-5 right font-heavy title">Giới tính</div>
-                    <div class="col-7 left">N&#x1EEF;</div>
-                </div>
-            </div>
-            <div class="row mb-1">
-                <div class="col-6">
-                    <div class="col-5 right font-heavy title">Ngày soi</div>
-                    <div class="col-7 left">07/10/2023</div>
-                </div>
-            </div>
-            <div class="row mb-1">
-            </div>
-            <div class="row mb-1">
-                <div class="col-6 center" style="margin-bottom: 0.05in;">
-                    <div class="col-5 right font-heavy title" style="text-decoration: underline">
-                        Mô tả
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="col-2"></div>
-                    <div class="col-10 left" style="text-align: justify;">Soi ngo&#xE0;i th&#x1EA5;y t&#x1EAD;t da &#x111;i&#x1EC3;m 6h v&#xE0; 12h.&#xD;&#xA;Soi trong &#x1ED1;ng h&#x1EAD;u m&#xF4;n c&#xE1;c b&#xFA;i tr&#x129; c&#x103;ng m&#x1ECD;ng,ph&#x1ED3;ng to,d&#x1EC5; ch&#x1EA3;y m&#xE1;u.B&#x1EC1; m&#x1EB7;t nh&#x1EB5;n l&#x1EA5;p k&#xED;n &#x1ED1;ng h&#x1EAD;u m&#xF4;n.Ni&#xEA;m m&#x1EA1;c gi&#xE3;n v&#xE0; xung huy&#x1EBF;t m&#x1EA1;nh.&#x110;&#x1EB7;c bi&#x1EC7;t c&#xF3; kh&#x1ED1;i s&#xF9;i ni&#xEA;m m&#x1EA1;c &#x111;i&#x1EC3;m 6h to qu&#xE1; ph&#xE1;t d&#x1EC5; sa ra ngo&#xE0;i khi &#x111;&#x1EA1;i ti&#x1EC7;n b&#x1EC1; m&#x1EB7;t tr&#x1EE3;t c&#xF3; nhi&#x1EC1;u gi&#x1EA3; m&#x1EA1;c.</div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6" style="margin-bottom: 0.05in;">
-                    <div class="col-5 right font-heavy title" style="text-decoration: underline">
-                        Chuẩn đoán
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="col-2"></div>
-                    <div class="col-10 left" style="text-align: justify;">Tr&#x129; &#x111;&#x1ED9; 4-Kh&#x1ED1;i s&#xF9;i ni&#xEA;m m&#x1EA1;c-T&#x1EAD;t da</div>
-                </div>
-            </div>
-            <p style="
-              position:absolute;
-              bottom: 0.3in;
-              right: 0.5in;
-              font-size: 14pt;
-              font-weight: 700;
-              color: #215868;
-            ">
-                P.GS/TS. ĐỖ NGỌC TẤN
-            </p>
-        </article>
-    </section>
-</body>
-
+        @keyframes nuxtLoading {
+          0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+          }
+          100% {
+            -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+          }
+        }
+      </style>
+      <script>
+        window.addEventListener('error', function () {
+          var e = document.getElementById('nuxt-loading')
+          if (e) {
+            e.className += ' error'
+          }
+        })
+      </script>
+      <div id="nuxt-loading" aria-live="polite" role="status">
+        <div>Loading...</div>
+      </div>
+      <!-- https://projects.lukehaas.me/css-loaders -->
+    </div>
+    <script>
+      window.__NUXT__ = {
+        config: {
+          _app: {
+            basePath: '\u002F',
+            assetsPath: '\u002F_nuxt\u002F',
+            cdnURL: null,
+          },
+        },
+      }
+    </script>
+    <script src="/_nuxt/runtime.js"></script>
+    <script src="/_nuxt/commons/app.js"></script>
+    <script src="/_nuxt/vendors/app.js"></script>
+    <script src="/_nuxt/app.js"></script>
+  </body>
 </html>
