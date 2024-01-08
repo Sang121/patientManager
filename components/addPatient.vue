@@ -6,9 +6,7 @@
           <div class="modal-header">
             <h2 class="modal-title "> <strong> Thêm bệnh nhân mới</strong> </h2>
           
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="unShow">
-    X
-</button>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="unShow">X</button>
 
           </div>
 

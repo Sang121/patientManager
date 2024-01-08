@@ -37,14 +37,11 @@
   flex-direction: row;
   margin-top: 5%;
   margin-left: 15%;
-
 }
 .intro{
   width: 30%;
   align-items: center;
-
 }
-
 .login {
   margin-left: 25%;
   

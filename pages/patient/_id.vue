@@ -86,12 +86,10 @@
     <div class="modal hide " tabindex="-1" role="dialog" id="seeMore">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="unSee">
-              <span aria-hidden="true">&times;</span>
-            </button> 
+          <label type="button" class="close" data-dismiss="modal" aria-label="Close" @click="unSee">x </label> 
           <div class="modal-header">
             <form @submit.prevent="updatePatient"  method="POST">
-            <table >
+            <table class="table_update" >
           <tr>
       
               <th>Họ và tên</th>
@@ -113,6 +111,7 @@
               <option value="Nữ">Nữ</option>
               <option value="Khác">Khác</option>
             </select>
+            <br>
           </td>
             <td><input type="text" v-model=" patient.diachi " name="diachi">  </td>
             <td><input type="text" v-model=" patient.nghenghiep " name="nghenghiep">  </td>
@@ -186,7 +185,12 @@
     border-collapse: collapse;
     margin-top: 20px;
   }
-
+.table_update td{
+  border:none;
+}
+.table_update th{
+  border:none;
+}
   th, td {
     padding: 10px;
     border: 1px solid #ddd;
@@ -242,6 +246,10 @@
 .modal-body{
   margin-left: 5%;
   width: 80%;
+}
+.close{
+  display: flex;
+ float: right;
 }
   .save_btn{
     margin-top: 5px;
