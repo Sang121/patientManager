@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-login">
     <a href="/"><img class="logo"  src="../store/logo.svg" alt=""> </a>
     <div class="main_content" >
      
@@ -29,9 +29,8 @@
 
 </template>
 <style>
-.container {
+.container-login {
   font-family: 'Arial', sans-serif;
-  
 }
 .main_content{
   display: flex;
@@ -47,8 +46,8 @@
 }
 
 .login {
-  margin-left: 35%;
-  width: 70%;
+  margin-left: 25%;
+  
 }
 
 
