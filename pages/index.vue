@@ -21,7 +21,6 @@
                     currentPageReportTemplate="{first} to {last} of {totalRecords}">
 
                   <Column field="id" header="ID"   style="width:5%"></Column>
-                  <Column field="stt"    style="width:5%"></Column>
 
                   <Column field="hovaten" header="Họ và tên" style="width: 25%"></Column>
                   <Column field="namsinh" header="Năm sinh"  style="width: 5%"></Column>
@@ -241,6 +240,12 @@ export default {
             },
           
     },
+    onRowEditSave(event) {
+                let { newData, index } = event;
+    
+                this.list[index] = newData;
+            },
+
      mounted(){
  
       if(this.time==null){

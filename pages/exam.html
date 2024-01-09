@@ -1,0 +1,82 @@
+
+<div class="card">   
+    <DataTable :value="list"  editMode="row" dataKey="id" :editingRows.sync="editingRows" @row-edit-save="onRowEditSave" responsiveLayout="scroll">
+     <Column field="id" header="Id" :styles="{width:'20%'}"> 
+       <template #editor="slotProps">
+                   <InputText v-model="slotProps.data[slotProps.column.field]" autofocus />
+               </template>
+     </Column>
+     <Column field="hovaten" header="Họ và tên" :styles="{width:'20%'}" >
+       <template #editor="slotProps">
+                   <InputText v-model="slotProps.data[slotProps.column.field]" autofocus />
+               </template>
+     </Column>
+     <Column field="namsinh" header="Năm sinh" :styles="{width:'20%'}">
+       <template #editor="slotProps">
+                   <InputText v-model="slotProps.data[slotProps.column.field]" autofocus />
+               </template>
+     </Column>
+     <Column field="namsinh" header="Năm sinh" :styles="{width:'20%'}">
+       <template #editor="slotProps">
+                   <InputText v-model="slotProps.data[slotProps.column.field]" autofocus />
+               </template>
+     </Column>
+     
+   
+    </DataTable>
+    <DataTable :value="list"  editMode="row" dataKey="id" :editingRows.sync="editingRows" @row-edit-save="onRowEditSave" responsiveLayout="scroll">
+     <Column field="id" header="Id" :styles="{width:'20%'}"> 
+       <template #editor="slotProps">
+                   <InputText v-model="slotProps.data[slotProps.column.field]" autofocus />
+               </template>
+     </Column>
+     <Column field="hovaten" header="Họ và tên" :styles="{width:'20%'}" >
+       <template #editor="slotProps">
+                   <InputText v-model="slotProps.data[slotProps.column.field]" autofocus />
+               </template>
+     </Column>
+     <Column field="namsinh" header="Năm sinh" :styles="{width:'20%'}">
+       <template #editor="slotProps">
+                   <InputText v-model="slotProps.data[slotProps.column.field]" autofocus />
+               </template>
+     </Column>
+     <Column field="namsinh" header="Năm sinh" :styles="{width:'20%'}">
+       <template #editor="slotProps">
+                   <InputText v-model="slotProps.data[slotProps.column.field]" autofocus />
+               </template>
+     </Column>
+     
+     <Column :rowEditor="true" :styles="{width:'10%', 'min-width':'8rem'}" :bodyStyle="{'text-align':'center'}"></Column>
+   
+    </DataTable>
+   </div>
+async getSiglePatient( ) {
+    const id=this.$route.query.id
+              try {
+              await axios.get(`${base_URL}/Patient/${id}`, { headers: {
+                          Authorization: access_token
+                      }
+                  })
+                      .then((response) => {
+                      if (response.data.total_count == 0) {
+                          console.log("Không có data");
+                          // document.getElementById("list").innerHTML = "Không có bản ghi nào!";
+                      }
+                      else {
+                          this.list = response.data;
+                          console.log("patient got",this.list)
+                          
+
+                      }
+                  });
+              }
+              catch (e) {
+                  console.log("Không thể lấy được thông tin bệnh nhân", e.message);
+              }
+              },
+
+              onRowEditSave(event) {
+                let { newData, index } = event;
+    
+                this.list[index] = newData;
+            },
