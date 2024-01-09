@@ -23,21 +23,9 @@
       <input type="number" class="form-control" id="namsinh"  v-model="patient.namsinh" required> 
 
 
-      <label for="gender">Giới tính</label>
-  <select  v-model="patient.gioitinh" name="gioitinh" id="gioitinh">
-    <option value="Nam" disabled>--Chọn giới tính của bạn--</option>
+      
+  <br/>
 
-    <option value="Nam">Nam</option>
-    <option value="Nữ">Nữ</option>
-    <option value="Khác">Khác</option>
-
-  </select>
-  <br>
-   
-        <!-- <label for="gender">Giới tính</label><br/>
-        <input type="text" class="form-control" id="gioitinh" v-model="patient.gioitinh" required> -->
-
-<br/>
       <label for="address">Địa chỉ</label>
 
       <input type="text" class="form-control" id="address" v-model="patient.diachi" required>
@@ -46,12 +34,21 @@
       <label for="nghenghiep">Nghề nghiệp</label>
       <input type="text" class="form-control"  v-model="patient.nghenghiep" required>
 
-    <br/>
+   
+      <label for="gender">Giới tính</label>
+  <select  v-model="patient.gioitinh" name="gioitinh" id="gioitinh">
+    <option value="Nam" disabled>--Chọn giới tính của bạn--</option>
 
-      <label for="socon">Số con</label>
-      <input type="number" class="form-control" v-model="patient.socon" required>
+    <option value="Nam">Nam</option>
+    <option value="Nữ">Nữ</option>
+    <option value="Khác">Khác</option>
+    
+  </select>
     </div> 
     <div class="record item">  
+      
+      <label for="socon">Số con</label>
+      <input type="number" class="form-control" v-model="patient.socon" required>
       <label for="chieucao">Chiều cao</label>
       <input type="number" class="form-control" v-model="patient.chieucao" required>
     
@@ -64,11 +61,7 @@
       <label for="lamsang">Lâm sàng </label>
       <input type="text" class="form-control" v-model="patient.lamsang" required>
 
-      <label for="mach">Mạch</label>
-      <input type="number" class="form-control" v-model="patient.mach" required>
-   
-      <label for="nhietdo">Nhiệt độ</label>
-      <input type="number" class="form-control" v-model="patient.nhietdo" required>
+      
  
     <br/>
   </div>
@@ -100,6 +93,16 @@ input {
   padding: 8px;
   margin-bottom: 10px;
 }
+select:focus {
+outline: none;
+
+}
+textarea:focus{
+  outline:none;
+}
+input:focus{
+  outline: none;
+}
 
 .modal {
   position: fixed;
@@ -125,7 +128,7 @@ input {
   border-radius: 10px;
   background-color: #fefefe;
   margin: auto;
-  margin-top: 10%;
+  margin-top: 3%;
   padding: 20px;
   border: 1px solid #888;
   width:45%;

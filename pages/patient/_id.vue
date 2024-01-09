@@ -58,7 +58,7 @@
     
      <Column field="tiensu" header="Tiền sử" :styles="{width:'20%'}">
        <template #editor="slotProps">
-                   <InputText v-model="slotProps.data[slotProps.column.field]"  />
+                   <textarea  rows="6" v-model="slotProps.data[slotProps.column.field]"  />
                </template>
      </Column>
      <Column field="lamsang" header="Lâm sàng" :styles="{width:'20%'}">
@@ -131,7 +131,12 @@
     padding-left: 10px;
 
   }
-
+textarea:focus{
+  outline:none;
+}
+input:focus{
+  outline: none;
+}
   /* Button Styles */
   .addUser {
     margin-top: 20px;
@@ -184,6 +189,7 @@
   input:focus {
    outline: none;
 }
+
 .modal {
   position: fixed;
   justify-content: center;
