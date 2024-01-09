@@ -39,11 +39,10 @@
     </div>
   <br/>
       <h2>medicalRecords, có {{ medicalRecords.length }} bản ghi</h2> 
-     
       <div class="card">   
-    <DataTable class="" :value="medicalRecords"  editMode="row" dataKey="id" 
+    <DataTable class="" :value="medicalRecords"  editMode="row" dataKey="id"  
     :editingRows.sync="editingRows" @row-edit-save="onRowEditSave" responsiveLayout="scroll">
-      <Column field="id" header="ID" :styles="{width:'10%'}"> </Column>
+      <Column field="id" header="ID" :styles="{width:'5%'}"></Column>
      <Column field="chieucao" header="Chiều cao(cm)" :styles="{width:'10%'}"> 
        <template #editor="slotProps">
                    <InputText v-model="slotProps.data[slotProps.column.field]"  />
@@ -56,28 +55,28 @@
                </template>
      </Column>
     
-     <Column field="tiensu" header="Tiền sử" :styles="{width:'20%'}">
+     <Column field="tiensu" header="Tiền sử" :styles="{width:'17%'}">
        <template #editor="slotProps">
-                   <textarea  rows="6" v-model="slotProps.data[slotProps.column.field]"  />
+                   <textarea  rows="3" v-model="slotProps.data[slotProps.column.field]"  />
                </template>
      </Column>
-     <Column field="lamsang" header="Lâm sàng" :styles="{width:'20%'}">
+     <Column field="lamsang" header="Lâm sàng" :styles="{width:'17%'}">
        <template #editor="slotProps">
-                  <textarea   rows="6"   v-model="slotProps.data[slotProps.column.field]"  />
+                  <textarea   rows="3"   v-model="slotProps.data[slotProps.column.field]"  />
                </template>
      </Column>
-     <Column field="chuandoan" header="Chẩn đoán" :styles="{width:'20%'}">
+     <Column field="chuandoan" header="Chẩn đoán" :styles="{width:'18%'}">
        <template #editor="slotProps">
-                   <textarea   rows="6" v-model="slotProps.data[slotProps.column.field]"  />
+                   <textarea   rows="3" v-model="slotProps.data[slotProps.column.field]"  />
                </template>
      </Column>
-     <Column field="dieutri" header="Điều trị" :styles="{width:'20%'}">
+     <Column field="dieutri" header="Cách điều trị" :styles="{width:'18%'}">
        <template #editor="slotProps">
-                  <textarea   rows="6" v-model="slotProps.data[slotProps.column.field]"  />
+                  <textarea   rows="3" v-model="slotProps.data[slotProps.column.field]"  />
                </template>
      </Column>
     
-     <Column :rowEditor="true" :styles="{width:'10%', 'min-width':'8rem'}" :bodyStyle="{'text-align':'center'}"></Column>
+     <Column :rowEditor="true" :styles="{width:'5%', 'min-width':'8rem'}" :bodyStyle="{'text-align':'center'}"></Column>
 
     </DataTable>
    </div>

@@ -17,8 +17,7 @@
         </div>
         <div  class="infContact"> 
             <div> 
-                    <p> Cơ sở 2: Số 166 Đường Nguyễn Văn Linh, Phường Bần Yên Nhân, Phố Nối, Thị Xã Mỹ Hào, Tỉnh Hưng Yên</p>
-
+                    <p> Cơ sở 2: Số 166 Đường Nguyễn Văn Linh, Phường Bần Yên Nhân, Phố Nối, Thị Xã Mỹ Hào, Tỉnh Hưng Yên</p>   
                     <div class="contacts"    >
                         <p class="pi pi-phone"> Hotline: 0904172709</p>
                         <p class="pi pi-envelope"> Email: binhtrivuong1985@gmail.com</p>
