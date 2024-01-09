@@ -3,6 +3,7 @@
     <Header /> <hr/>  
         <div class="main">
  <!-- <button @click="getExam()">In phiếu khám </button> -->
+ <div> 
  <h2>Thông tin cá nhân</h2>
       <table>
         <tr> 
@@ -34,18 +35,22 @@
           <td>{{ patient.socon }}</td>
         </tr>
       </table>
-      <h2>medicalRecords,có {{ medicalRecords.length }} bản ghi</h2> 
+
+    </div>
+  <br/>
+      <h2>medicalRecords, có {{ medicalRecords.length }} bản ghi</h2> 
+     
       <div class="card">   
-    <DataTable class="records" :value="medicalRecords"  editMode="row" dataKey="id" 
+    <DataTable class="" :value="medicalRecords"  editMode="row" dataKey="id" 
     :editingRows.sync="editingRows" @row-edit-save="onRowEditSave" responsiveLayout="scroll">
       <Column field="id" header="ID" :styles="{width:'10%'}"> </Column>
-     <Column field="chieucao" header="Chiều cao" :styles="{width:'10%'}"> 
+     <Column field="chieucao" header="Chiều cao(cm)" :styles="{width:'10%'}"> 
        <template #editor="slotProps">
                    <InputText v-model="slotProps.data[slotProps.column.field]"  />
         </template>
      </Column> 
       
-     <Column field="cannang" header="Cân nặng" :styles="{width:'10%'}" >
+     <Column field="cannang" header="Cân nặng(kg)" :styles="{width:'10%'}" >
        <template #editor="slotProps">
                    <InputText v-model="slotProps.data[slotProps.column.field]"  />
                </template>
@@ -58,29 +63,24 @@
      </Column>
      <Column field="lamsang" header="Lâm sàng" :styles="{width:'20%'}">
        <template #editor="slotProps">
-                   <InputText v-model="slotProps.data[slotProps.column.field]"  />
+                  <textarea   rows="6"   v-model="slotProps.data[slotProps.column.field]"  />
                </template>
      </Column>
+     <Column field="chuandoan" header="Chẩn đoán" :styles="{width:'20%'}">
+       <template #editor="slotProps">
+                   <textarea   rows="6" v-model="slotProps.data[slotProps.column.field]"  />
+               </template>
+     </Column>
+     <Column field="dieutri" header="Điều trị" :styles="{width:'20%'}">
+       <template #editor="slotProps">
+                  <textarea   rows="6" v-model="slotProps.data[slotProps.column.field]"  />
+               </template>
+     </Column>
+    
      <Column :rowEditor="true" :styles="{width:'10%', 'min-width':'8rem'}" :bodyStyle="{'text-align':'center'}"></Column>
 
     </DataTable>
    </div>
-    <Button type="button" icon="pi pi-user-edit"  @click="updatePatient()" label="Lưu "/>  
-<!-- <updatePatient/> -->
-  <div class="update"> 
-    <div class="modal hide " tabindex="-1" role="dialog" id="seeMore">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <label type="button" class="close" data-dismiss="modal" aria-label="Close" @click="unSee">x </label> 
-          <div class="modal-header">
-            <form @submit.prevent="updatePatient"  method="POST">
-              <Button type="submit" icon="pi pi-save" class="save_btn"  label="Lưu" />
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 </div>
 </template>
@@ -89,8 +89,7 @@
   .container {
     margin: 0 ;
     padding: 5px;
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
+
     border-radius: 8px;
   }
 
@@ -127,8 +126,10 @@
   }
 
   /* Records Table Styles */
-  .records {
-    border: 1px solid black;
+  .card {
+    background-color: transparent transparent;
+    padding-left: 10px;
+
   }
 
   /* Button Styles */
@@ -180,9 +181,6 @@
     margin-top: 5px;
     margin-left: 40%;
   }
-  textarea:focus {
-   outline: none;
-}
   input:focus {
    outline: none;
 }
@@ -245,7 +243,7 @@ async getRecord( ) {
                             else {
                               this.medicalRecords= response.data.data ;
                                 console.log(" data get",response.data.data);
-
+                                
                             }
                         });
                     }
@@ -263,9 +261,13 @@ async getRecord( ) {
                             .then((response) => {
                             if (response.data.total_count == 0) {
                                 console.log("Không có data");
+                                document.getElementById("list").innerHTML = "Không có bản ghi nào!";
                             }
                             else {
                                 this.patient = response.data.data;
+                                console.log("patient got",this.patient)
+                                
+
                             }
                         });
                     }
@@ -273,35 +275,35 @@ async getRecord( ) {
                         console.log("Không thể lấy được thông tin bệnh nhân", e.message);
                     }
                     },
-         onRowEditSave(event) {
+    onRowEditSave(event) {
             let {newData, index } = event;
             this.medicalRecords[index] = newData;
-            this.patient.medicalRecords=this.medicalRecords[index]
+            this.patient.medicalRecord=this.medicalRecords[index]
             var partientUpdate=this.patient
-              try{
-                axios.post(`${base_URL}/Patient/update`,
-                partientUpdate,
-                {headers: {
-                    Authorization:access_token
-                  }
-                }     
-                ) 
-                .then((response) => {
-          
-                  alert("Update thông tin thành công")
-                  console.log("partientUpdate send",partientUpdate)
-                  console.log(" res partientUpdate send",response)
+          try{
+            axios.post(`${base_URL}/Patient/update`,
+            partientUpdate,
+            {headers: {
+                Authorization:access_token
+              }
+            }     
+            ) 
+            .then((response) => {
+      
+              alert("Update thông tin thành công")
+              console.log("partientUpdate send",partientUpdate)
+console.log(" res partientUpdate send",response)
 
-                  // setTimeout(() => {
-                  //   window.location.reload()
-                  //   }, 300);
-                }
-                )}
-                catch (e) {
-                    console.log("Không thể update",e)
+              // setTimeout(() => {
+              //   window.location.reload()
+              //   }, 300);
+            }
+            )}
+            catch (e) {
+                console.log("Không thể update",e)
 
-                }
-
+            }
+      
 
         },
         edit(){
