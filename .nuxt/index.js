@@ -19,6 +19,8 @@ import nuxt_plugin_tooltipplugin9f0dcac4_b9c288e8 from 'nuxt_plugin_tooltipplugi
 import nuxt_plugin_calendarpluginb036005a_2152f1da from 'nuxt_plugin_calendarpluginb036005a_2152f1da' // Source: .\\calendar.plugin.b036005a.js (mode: 'all')
 import nuxt_plugin_dialogplugin480d46c6_7b0e3cc0 from 'nuxt_plugin_dialogplugin480d46c6_7b0e3cc0' // Source: .\\dialog.plugin.480d46c6.js (mode: 'all')
 import nuxt_plugin_columnplugin2f8c792b_37800b64 from 'nuxt_plugin_columnplugin2f8c792b_37800b64' // Source: .\\column.plugin.2f8c792b.js (mode: 'all')
+import nuxt_plugin_rowplugin2ca4f596_e155dcd6 from 'nuxt_plugin_rowplugin2ca4f596_e155dcd6' // Source: .\\row.plugin.2ca4f596.js (mode: 'all')
+import nuxt_plugin_columngroupplugin342fca84_f9183232 from 'nuxt_plugin_columngroupplugin342fca84_f9183232' // Source: .\\columngroup.plugin.342fca84.js (mode: 'all')
 import nuxt_plugin_datatableplugin08c902ff_10a5f8ca from 'nuxt_plugin_datatableplugin08c902ff_10a5f8ca' // Source: .\\datatable.plugin.08c902ff.js (mode: 'all')
 import nuxt_plugin_buttonplugince24abf2_22604e52 from 'nuxt_plugin_buttonplugince24abf2_22604e52' // Source: .\\button.plugin.ce24abf2.js (mode: 'all')
 import nuxt_plugin_inputtextplugin09fc88d2_e52add58 from 'nuxt_plugin_inputtextplugin09fc88d2_e52add58' // Source: .\\inputtext.plugin.09fc88d2.js (mode: 'all')
@@ -243,6 +245,14 @@ async function createApp(ssrContext, config = {}) {
 
   if (typeof nuxt_plugin_columnplugin2f8c792b_37800b64 === 'function') {
     await nuxt_plugin_columnplugin2f8c792b_37800b64(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_rowplugin2ca4f596_e155dcd6 === 'function') {
+    await nuxt_plugin_rowplugin2ca4f596_e155dcd6(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_columngroupplugin342fca84_f9183232 === 'function') {
+    await nuxt_plugin_columngroupplugin342fca84_f9183232(app.context, inject)
   }
 
   if (typeof nuxt_plugin_datatableplugin08c902ff_10a5f8ca === 'function') {

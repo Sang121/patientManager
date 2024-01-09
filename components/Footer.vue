@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="container-ft">
-        <p > © 2023 - Bản quyền thuộc về Công ty TNHH 1 thành viên</p>
+        <p > © 2023 - Bản quyền thuộc về Công ty TNHH XXX</p>
         <div class="address">
             <div class="infContact">
                 <div>

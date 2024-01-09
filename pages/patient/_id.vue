@@ -3,6 +3,7 @@
     <Header /> <hr/>  
         <div class="main">
  <!-- <button @click="getExam()">In phiếu khám </button> -->
+ <div> 
  <h2>Thông tin cá nhân</h2>
       <table>
         <tr> 
@@ -33,129 +34,53 @@
           <th>Số con</th>
           <td>{{ patient.socon }}</td>
         </tr>
-      
-
-
       </table>
-      <h2>MedicalRecord</h2>
-      <table class="records"> 
-        <tr>
-          <th>Chiều cao(cm):</th>
-          <td>{{ medicalRecord.chieucao }} cm</td>
 
-        </tr>
-        <tr>
-          <th>Cân nặng:</th>
-          <td>{{ medicalRecord.cannang }} kg</td>
-
-        </tr>
-        <tr>
-          <th>Tiền sử:</th>
-          <td>{{ medicalRecord.tiensu }}</td>
-
-        </tr>
-        <tr>
-          <th>Lâm sàng:</th>
-          <td>{{ medicalRecord.lamsang }}</td>
-
-        </tr>
-        <tr>
-          <th>Mạch:</th>
-          <td>{{ medicalRecord.mach }}</td>
-
-        </tr>
-      
-        <tr>
-          <th>Mô tả:</th>
-          <td>{{ medicalRecord.mota }}</td>
-
-        </tr>
-        <tr>
-          <th>Chẩn đoán:</th>
-          <td>{{ medicalRecord.chuandoan }}</td>
-
-        </tr>
-        <tr>
-          <th>Điều trị:</th>
-          <td>{{ medicalRecord.dieutri }}</td>
-
-        </tr>      </table>
-    <Button type="button" icon="pi pi-user-edit"  @click="edit()" label="Sửa thông tin "/>  
-<!-- <updatePatient/> -->
-<div class="update"> 
-    <div class="modal hide " tabindex="-1" role="dialog" id="seeMore">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <label type="button" class="close" data-dismiss="modal" aria-label="Close" @click="unSee">x </label> 
-          <div class="modal-header">
-            <form @submit.prevent="updatePatient"  method="POST">
-            <table class="table_update" >
-          <tr>
-      
-              <th>Họ và tên</th>
-              <th>Năm sinh</th>
-              <th>Giới tính</th>
-          <th> Địa chỉ </th>
-          <th>Nghề Nghiệp</th>
-            </tr>
-           
-            <tr >
-         
-            <td><input type="text" v-model=" patient.hovaten " name="hovaten">  </td>
-            <td><input type="number" v-model=" patient.namsinh " name="tuoi">  </td>
-        
-            <td> <select style="margin: auto;"  v-model="patient.gioitinh" name="gioitinh" id="gioitinh">
-             
-
-              <option value="Nam">Nam</option>
-              <option value="Nữ">Nữ</option>
-              <option value="Khác">Khác</option>
-            </select>
-            <br>
-          </td>
-            <td><input type="text" v-model=" patient.diachi " name="diachi">  </td>
-            <td><input type="text" v-model=" patient.nghenghiep " name="nghenghiep">  </td>
-
-          </tr>
-          <tr> 
-
-               
-              <th>Số con</th>
-              <th>Cân nặng</th>
-              <th>Chiều cao(cm)</th>
-              <th>Lâm sàng</th>
-              <th>Mạch</th>
-            </tr>
-            <tr> 
-           
-            <td><input type="number" v-model=" patient.socon " name="socon">  </td>
-            <td><input type="text" v-model="medicalRecord.cannang" name="cannang">  </td>
-            <td><input type="text" v-model="medicalRecord.chieucao" name="chieucao">  </td>
-            <td><input type="text" v-model=" medicalRecord.lamsang " name="lamsang">  </td>
-            <td><input type="text" v-model="medicalRecord.mach " name="mach">  </td>
-        </tr>
-        <tr> 
-          <th>Tiền sử</th>
-             
-               <th>Mô tả</th>
-               <th>Chuẩn đoán</th>
-            <th>Điều trị</th>
-          </tr>
-       
-          <tr >  
-            <td><textarea rows="7" type="text" v-model=" medicalRecord.tiensu " name="tieusu"></textarea> </td>  
-            <td><textarea rows="7"  type="text" v-model=" medicalRecord.mota " name="mota"></textarea>  </td>
-            <td><textarea rows="7" type="text" v-model=" medicalRecord.chuandoan" name="chuandoan"></textarea>  </td>
-            <td><textarea rows="7" type="text" v-model=" medicalRecord.dieutri" name="dieutri"></textarea>  </td>
-        </tr>
-    </table>
-    <Button type="submit" icon="pi pi-save" class="save_btn"  label="Lưu" />
-  </form>
-  </div>
-</div>
-</div>
     </div>
-     </div>
+  <br/>
+      <h2>medicalRecords, có {{ medicalRecords.length }} bản ghi</h2> 
+     
+      <div class="card">   
+    <DataTable class="" :value="medicalRecords"  editMode="row" dataKey="id" 
+    :editingRows.sync="editingRows" @row-edit-save="onRowEditSave" responsiveLayout="scroll">
+      <Column field="id" header="ID" :styles="{width:'10%'}"> </Column>
+     <Column field="chieucao" header="Chiều cao(cm)" :styles="{width:'10%'}"> 
+       <template #editor="slotProps">
+                   <InputText v-model="slotProps.data[slotProps.column.field]"  />
+        </template>
+     </Column> 
+      
+     <Column field="cannang" header="Cân nặng(kg)" :styles="{width:'10%'}" >
+       <template #editor="slotProps">
+                   <InputText v-model="slotProps.data[slotProps.column.field]"  />
+               </template>
+     </Column>
+    
+     <Column field="tiensu" header="Tiền sử" :styles="{width:'20%'}">
+       <template #editor="slotProps">
+                   <textarea  rows="6" v-model="slotProps.data[slotProps.column.field]"  />
+               </template>
+     </Column>
+     <Column field="lamsang" header="Lâm sàng" :styles="{width:'20%'}">
+       <template #editor="slotProps">
+                  <textarea   rows="6"   v-model="slotProps.data[slotProps.column.field]"  />
+               </template>
+     </Column>
+     <Column field="chuandoan" header="Chẩn đoán" :styles="{width:'20%'}">
+       <template #editor="slotProps">
+                   <textarea   rows="6" v-model="slotProps.data[slotProps.column.field]"  />
+               </template>
+     </Column>
+     <Column field="dieutri" header="Điều trị" :styles="{width:'20%'}">
+       <template #editor="slotProps">
+                  <textarea   rows="6" v-model="slotProps.data[slotProps.column.field]"  />
+               </template>
+     </Column>
+    
+     <Column :rowEditor="true" :styles="{width:'10%', 'min-width':'8rem'}" :bodyStyle="{'text-align':'center'}"></Column>
+
+    </DataTable>
+   </div>
 </div>
 </div>
 </template>
@@ -164,8 +89,7 @@
   .container {
     margin: 0 ;
     padding: 5px;
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
+
     border-radius: 8px;
   }
 
@@ -202,10 +126,17 @@
   }
 
   /* Records Table Styles */
-  .records {
-    border: 1px solid black;
-  }
+  .card {
+    background-color: transparent transparent;
+    padding-left: 10px;
 
+  }
+textarea:focus{
+  outline:none;
+}
+input:focus{
+  outline: none;
+}
   /* Button Styles */
   .addUser {
     margin-top: 20px;
@@ -255,12 +186,10 @@
     margin-top: 5px;
     margin-left: 40%;
   }
-  textarea:focus {
-   outline: none;
-}
   input:focus {
    outline: none;
 }
+
 .modal {
   position: fixed;
   justify-content: center;
@@ -291,20 +220,21 @@ import axios from "axios";
 const base_URL = "http://192.168.1.53:9098"
 const access_token= localStorage.getItem("auth._token.local"); //get bearer token
 import Button from 'primevue/button';
-
 export default {
  
     data(){
     return {
         patient:{},
-        medicalRecord:{
-   benhNhan:{},
+        medicalRecords:{
+
         },
+        editingRows:[],
     };
 },
 
+
     methods: {
-      async getRecord( ) {
+async getRecord( ) {
         const id=this.$route.query.id
 
                     try {
@@ -314,17 +244,17 @@ export default {
                         })
                             .then((response) => {
                             if (response.data.total_count == 0) {
-                                console.log("Không có data");
-                                document.getElementById("list").innerHTML = "Không có bản ghi nào!";
+                                console.log("Không có data",response);
                             }
                             else {
-                                this.medicalRecord= response.data.data[0];
-                                console.log(" data render",response.data.data[0]);
+                              this.medicalRecords= response.data.data ;
+                                console.log(" data get",response.data.data);
+                                
                             }
                         });
                     }
                     catch (e) {
-                        console.log("Không thể lấy được thông tin bệnh nhân", e.message);
+                        console.log("Không thể lấy được thông tin bệnh nhân",e.message);
                     }
                     },
         async getSiglePatient( ) {
@@ -342,6 +272,7 @@ export default {
                             else {
                                 this.patient = response.data.data;
                                 console.log("patient got",this.patient)
+                                
 
                             }
                         });
@@ -350,10 +281,11 @@ export default {
                         console.log("Không thể lấy được thông tin bệnh nhân", e.message);
                     }
                     },
-    updatePatient(){
-        this.patient.medicalRecord=this.medicalRecord
-        var partientUpdate=this.patient
-        console.log("partientUpdate",partientUpdate)  
+    onRowEditSave(event) {
+            let {newData, index } = event;
+            this.medicalRecords[index] = newData;
+            this.patient.medicalRecord=this.medicalRecords[index]
+            var partientUpdate=this.patient
           try{
             axios.post(`${base_URL}/Patient/update`,
             partientUpdate,
@@ -365,57 +297,36 @@ export default {
             .then((response) => {
       
               alert("Update thông tin thành công")
-              console.log("res",response);
-              console.log("partientUpdate",partientUpdate)
-              setTimeout(() => {
-                window.location.reload()
-                }, 300);
+              console.log("partientUpdate send",partientUpdate)
+console.log(" res partientUpdate send",response)
+
+              // setTimeout(() => {
+              //   window.location.reload()
+              //   }, 300);
             }
             )}
             catch (e) {
                 console.log("Không thể update",e)
 
             }
-      },
+      
 
-    async  getExam(){
-        const id=this.$route.query.id
-        try {
-                    await axios.get(`${base_URL}/Patient/${id}/examination`, { headers: {
-                                Authorization: access_token
-                            }
-                        })
-                            .then((response) => {
-                              console.log("patient got",response.data.data )
-                              localStorage.setItem("examination",response.data.data)
-                              window.location.href = '/exam.html'
-                                // this.patient = response.data.data;
-                                // console.log("patient got",this.patient)
+        },
+        edit(){
+          const modal = document.getElementById('seeMore');
+                        modal.classList.remove('hide');
+        },
+        unSee() {
+              const modal = document.getElementById('seeMore');
+              modal.classList.add('hide'); 
+            },
 
-                           
-                        });
-                    }
-                    catch (e) {
-                        console.log("Không thể lấy được thông tin bệnh nhân", e.message);
-                    }
-                    },
-edit(){
-  const modal = document.getElementById('seeMore');
-                modal.classList.remove('hide');
-
-
-},
-unSee() {
-      const modal = document.getElementById('seeMore');
-      modal.classList.add('hide'); 
-    },
-
-    },
+            },
 
 
     mounted(){
-        this.getSiglePatient(),
-this.getRecord()
+        this.getSiglePatient()
+        this.getRecord()
     },
     name: 'siglePatient',
     }
