@@ -38,7 +38,7 @@
 
     </div>
   <br/>
-      <h2>medicalRecords, có {{ medicalRecords.length }} bản ghi</h2> 
+      <h2>Medical Records</h2> 
       <div class="card">   
     <DataTable class="" :value="medicalRecords"  editMode="row" dataKey="id"  
     :editingRows.sync="editingRows" @row-edit-save="onRowEditSave" responsiveLayout="scroll">
