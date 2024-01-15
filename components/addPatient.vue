@@ -232,8 +232,6 @@ methods:{
       
       var patient=
         {
-
-          
   "hovaten": this.patient.hovaten,
   "socon": this.patient.socon,
   "namsinh": this.patient.namsinh,
@@ -245,7 +243,7 @@ methods:{
   "ngayketthuc":  today.toISOString(),
   "medicalRecord": {
     "id": 0,
-    "benhnhan_id": 0,
+    "benhnhan_id": 0, 
     "cannang": this.patient.cannang,
     "chieucao": this.patient.chieucao,
     "tiensu": this.patient.tiensu,

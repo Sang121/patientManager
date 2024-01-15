@@ -40,8 +40,9 @@
   <br/>
       <h2>Medical Records</h2> 
       <div class="card">   
-    <DataTable class="" :value="medicalRecords"  editMode="row" dataKey="id"  
-    :editingRows.sync="editingRows" @row-edit-save="onRowEditSave" responsiveLayout="scroll">
+    <DataTable class="" :value="medicalRecords"  editMode="row" dataKey="id" 
+    :editingRows.sync="editingRows" @row-edit-save="onRowEditSave" responsiveLayout="scroll"
+  >
       <Column field="id" header="ID" :styles="{width:'5%'}"></Column>
      <Column field="chieucao" header="Chiều cao(cm)" :styles="{width:'10%'}"> 
        <template #editor="slotProps">
@@ -75,9 +76,7 @@
                   <textarea   rows="3" v-model="slotProps.data[slotProps.column.field]"  />
                </template>
      </Column>
-    
      <Column :rowEditor="true" :styles="{width:'5%', 'min-width':'8rem'}" :bodyStyle="{'text-align':'center'}"></Column>
-
     </DataTable>
    </div>
 </div>
@@ -101,6 +100,7 @@
   .main {
     margin-top: 10px;
   }
+
 
   /* Table Styles */
   table {
@@ -282,22 +282,26 @@ async getRecord( ) {
                     },
     onRowEditSave(event) {
             let {newData, index } = event;
+            var today= new Date();
+  //var dateToday = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
             this.medicalRecords[index] = newData;
+            this.patient.ngayketthuc=today.toISOString(),
             this.patient.medicalRecord=this.medicalRecords[index]
-            var partientUpdate=this.patient
+            var patientUpdate=this.patient
           try{
             axios.post(`${base_URL}/Patient/update`,
-            partientUpdate,
+            patientUpdate,
             {headers: {
                 Authorization:access_token
               }
             }     
             ) 
             .then((response) => {
-      
+      // console.log("this.medicalRecords[index]",this.medicalRecords[index]);
+      // console.log("this.patient.medicalRecord",this.patient.medicalRecord);
               alert("Update thông tin thành công")
-              console.log("partientUpdate send",partientUpdate)
-console.log(" res partientUpdate send",response)
+              console.log("partientUpdate send",patientUpdate)
+  console.log(" res partient Update send",response)
 
               // setTimeout(() => {
               //   window.location.reload()
@@ -305,6 +309,8 @@ console.log(" res partientUpdate send",response)
             }
             )}
             catch (e) {
+              console.log("partientUpdate send",patientUpdate)
+
                 console.log("Không thể update",e)
 
             }
